@@ -6,4 +6,6 @@ def print_lab(num, name):
 
 
 def tabulate_results(array, headers):
+    if array is None:
+        return ""
     return tabulate(array, headers, tablefmt="github", colalign=("left",), numalign="left")
