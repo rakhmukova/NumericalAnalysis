@@ -20,7 +20,7 @@ if __name__ == '__main__':
     print(f"Точное значение интеграла: {precise_value}\n")
 
     methods_and_names = [
-        [integration.left_rectangle, "левого прямоугольника"],
+        (integration.left_rectangle, "левого прямоугольника"),
         (integration.right_rectangle, "правого прямоугольника"),
         (integration.middle_rectangle, "среднего прямоугольника"),
         (integration.trapeze, "трапеции"),
