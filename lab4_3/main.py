@@ -11,8 +11,9 @@ if __name__ == '__main__':
     exp_func = exp(x)
     poly_0_func = 1
     poly_1_func = x
+    poly_2_func = x**2
     poly_3_func = x**3
-    functions = [exp_func, poly_0_func, poly_1_func, poly_3_func]
+    functions = [exp_func, poly_0_func, poly_1_func, poly_2_func, poly_3_func]
     print(tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция']))
     num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
