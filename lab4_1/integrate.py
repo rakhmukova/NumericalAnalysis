@@ -9,11 +9,12 @@ import scipy.integrate as integrate
 
 class Integration:
 
-    def __init__(self, a, b, f, p):
+    def __init__(self, a, b, f, p, m=None):
         self.a = a
         self.b = b
         self.f = f
         self.p = p
+        self.m = m
 
     def phi(self, x):
         return self.p(x) * self.f(x)
@@ -70,22 +71,60 @@ class Integration:
 
     def three_eights(self):
         h = self.interval() / 3
-        return self.interval() * (1/8 * self.phi(self.a) + 3/8 * self.phi(self.a + h) + 3/8 * self.phi(self.a + 2 * h) + 1 /8 * self.phi(self.b))
+        return self.interval() * (1 / 8 * self.phi(self.a) + 3 / 8 * self.phi(self.a + h) + 3 / 8 * self.phi(
+            self.a + 2 * h) + 1 / 8 * self.phi(self.b))
 
     def left_rectangles(self):
-        pass
+        result = 0
+        h = (self.b - self.a) / self.m
+        x = self.a
+        for i in range(self.m):
+            result += self.f(x)
+            x += h
+        return result * h
 
     def right_rectangles(self):
-        pass
+        result = 0
+        h = (self.b - self.a) / self.m
+        x = self.a
+        for i in range(self.m):
+            x += h
+            result += self.f(x)
+        return result * h
 
     def middle_rectangles(self):
-        pass
+        h = (self.b - self.a) / self.m
+        return self.__middle_part() * h
+
+    def __double_part(self):
+        result = 0
+        h = (self.b - self.a) / self.m
+        x = self.a + h
+        for i in range(self.m - 1):
+            x += h
+            result += self.f(x)
+        return 2 * result
+
+    def __sum_of_ends(self):
+        return self.f(self.b) + self.f(self.b)
+
+    def __middle_part(self):
+        result = 0
+        h = (self.b - self.a) / self.m
+        x = self.a + h / 2
+        for i in range(self.m):
+            x += h
+            result += self.f(x)
+        return result
 
     def trapezes(self):
-        pass
+        h = (self.b - self.a) / self.m
+        result = self.__double_part() + self.__sum_of_ends()
+        return h / 2 * result
 
     def simpsons_multiple(self):
-        pass
+        h = (self.b - self.a) / self.m
+        return (self.__sum_of_ends() + self.__double_part() + self.__middle_part() * 4) * h / 6
 
     def precise(self):
         return integrate.quad(self.phi, self.a, self.b)[0]
