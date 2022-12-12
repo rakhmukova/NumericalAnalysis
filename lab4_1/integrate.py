@@ -16,7 +16,9 @@ class Integration:
         self.f = f
         self.p = p
         self.m = m
-        self.h = self.interval() / self.m
+        self.h = None
+        if m:
+            h = self.interval() / self.m
         self.func_maximums = []
         self.find_max(ders)
 
@@ -138,13 +140,13 @@ class Integration:
 
     def theoretical_error(self, method):
         algebraic_precision_and_const_value = {
-            self.left_rectangles: [0, 1/2],
-            self.right_rectangles: [0, 1/2],
-            self.middle_rectangles: [1, 1/24],
-            self.trapezes: [1, 1/12],
-            self.simpsons_multiple: [3, 1/2880]
+            self.left_rectangles: [0, 1 / 2],
+            self.right_rectangles: [0, 1 / 2],
+            self.middle_rectangles: [1, 1 / 24],
+            self.trapezes: [1, 1 / 12],
+            self.simpsons_multiple: [3, 1 / 2880]
         }
 
         d, value = algebraic_precision_and_const_value[method]
         func_max = self.func_maximums[d]
-        return value * func_max * self.interval() * self.h**(d + 1)
+        return value * func_max * self.interval() * self.h ** (d + 1)
