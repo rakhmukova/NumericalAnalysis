@@ -16,9 +16,6 @@ if __name__ == '__main__':
     x2 = 1 / 2
     x3 = 5 / 6
     nodes = [x1, x2, x3]
-    # m = 10
-    # h = (b - a) / m
-    # nodes = [a + i * h for i in range(m)]
 
     print_lab(4.1, "Точное и приближённое вычисление интеграла по квадратурным формулам")
     print(f"Вариант 8. \nf(x)=sin(x) \np(x) = 1/sqrt(1 - x) \na={a}  b={b}")
