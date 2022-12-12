@@ -14,7 +14,7 @@ if __name__ == '__main__':
     poly_3_func = x**3
     functions = [exp_func, poly_0_func, poly_1_func, poly_3_func]
     print(tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция']))
-    num_of_function = int(input('Введите номер функции (0): ') or '0')
+    num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
     f = lambdify(x, functions[num_of_function])
 
