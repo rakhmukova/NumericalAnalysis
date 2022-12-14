@@ -1,7 +1,7 @@
 import math
 
-from common.main import print_lab
-from lab4_1.integrate import Integration
+from common.functions import print_lab
+from common.integrate import Integration
 
 if __name__ == '__main__':
     a = 0

@@ -3,12 +3,12 @@ import math
 from numpy.linalg import linalg
 from sympy import symbols
 
-from common.main import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results
 from lab1.main import Solver
 
 import scipy.integrate as integrate
 
-from lab4_1.integrate import Integration
+from common.integrate import Integration
 
 
 class GaussianQuadratic:

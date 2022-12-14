@@ -2,7 +2,7 @@ import numpy as np
 import scipy.misc as sc
 import math
 
-from common.main import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results
 
 
 class Solver:

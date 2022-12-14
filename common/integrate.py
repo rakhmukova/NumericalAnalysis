@@ -3,7 +3,7 @@ import copy
 import scipy
 from numpy.linalg import linalg
 
-from common.main import tabulate_results as tab
+from common.functions import tabulate_results as tab
 
 import scipy.integrate as integrate
 

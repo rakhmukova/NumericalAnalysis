@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from common.main import print_lab, tabulate_results as tab
+from common.functions import print_lab, tabulate_results as tab
 from lab1.main import Solver
 from scipy.interpolate import lagrange
 

@@ -1,5 +1,5 @@
 import math
-from common.main import print_lab, tabulate_results as tab
+from common.functions import print_lab, tabulate_results as tab
 import copy
 from sympy import *
 

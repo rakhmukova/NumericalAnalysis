@@ -1,7 +1,7 @@
 from sympy import symbols, lambdify, exp
 
-from common.main import print_lab, tabulate_results
-from lab4_1.integrate import Integration
+from common.functions import print_lab, tabulate_results
+from common.integrate import Integration
 
 
 def calc(methods_and_names):
