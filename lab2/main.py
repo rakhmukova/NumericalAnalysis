@@ -39,7 +39,7 @@ class Interpolation:
         # sort by distance from x and take first n + 1
         self.value_table = sorted(self.value_table, key=lambda t: abs(t[0] - self.x))
         self.value_table = self.value_table[:self.degree + 1]
-        self.value_table = sorted(self.value_table, key=lambda t: t[0])
+        # self.value_table = sorted(self.value_table, key=lambda t: t[0])
 
     def lagrange_part(self, k, x):
         u = 1
@@ -98,7 +98,7 @@ def input_polynom_degree(m):
     n = int(input())
 
     while n > m:
-        print("Значение степени многочлена не должно превышать {m}, введите другое значение: ")
+        print(f"Значение степени многочлена не должно превышать {m}, введите другое значение: ")
         n = int(input())
 
     return n
