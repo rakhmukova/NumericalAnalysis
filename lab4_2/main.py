@@ -9,19 +9,18 @@ from lab4_1.integrate import Integration
 def execute():
     x = symbols('x')
     exp_func = exp(x)
-    zero_func = 0
     poly_0_func = 1
     poly_1_func = x
     poly_2_func = x ** 2
     poly_3_func = x ** 3
     functions = [exp_func, poly_0_func, poly_1_func, poly_2_func, poly_3_func]
-    print(tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция']))
+    tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция'])
     num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
     f = lambdify(x, functions[num_of_function])
 
-    a = int(input("Введите левый предел интегрирования: "))
-    b = int(input("Введите правый предел интегрирования: "))
+    a = float(input("Введите левый предел интегрирования: "))
+    b = float(input("Введите правый предел интегрирования: "))
     def p(x): return 1
     integration = Integration(a, b, f, p)
     precise_value = integration.precise()
@@ -47,7 +46,7 @@ if __name__ == '__main__':
     def f(x):
         return math.exp(x)
 
-    print_lab(4.2, 'Приближённое вычисление интеграла по квадратурным формулам')
+    print_lab(4.2, 'Приближённое вычисление интеграла по простым квадратурным формулам')
     print(f"Вариант 8")
 
     to_quit = 1

@@ -34,8 +34,8 @@ class Solver:
             y1 = self.func(x1)
 
         print(f"\nОтделение корней:\n")
-        print(tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
-                               ["Номер", "Интервал"]))
+        tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
+                               ["Номер", "Интервал"])
 
     def specify_bisection(self, ai, bi):
         step = 0
@@ -107,9 +107,9 @@ class Solver:
     def bisection(self):
         print("\nБисекция:\n")
         bisection_results = self.apply_method(self.specify_bisection)
-        print(tabulate_results(bisection_results,
+        tabulate_results(bisection_results,
                                ["Корень", "Количество шагов", "Длина последнего отрезка",
-                                "Абсолоютная величина невязки"]))
+                                "Абсолоютная величина невязки"])
         roots = [bisection_results[i][1] for i in range(len(bisection_results))]
         return roots
 
@@ -118,27 +118,27 @@ class Solver:
 
         print("\nБисекция:\n")
         bisection_results = self.apply_method(self.specify_bisection)
-        print(tabulate_results(bisection_results,
+        tabulate_results(bisection_results,
                                ["Корень", "Количество шагов", "Длина последнего отрезка",
-                                "Абсолоютная величина невязки"]))
+                                "Абсолоютная величина невязки"])
 
         print("\nМетод Ньютона:\n")
         newton_results = self.apply_method(self.specify_newton)
-        print(tabulate_results(newton_results,
+        tabulate_results(newton_results,
                                ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"]))
+                                "Абсолоютная величина невязки"])
 
         print("\nМодифицированный метод Ньютона:\n")
         newton_modified_results = self.apply_method(self.specify_newton_modified)
-        print(tabulate_results(newton_modified_results,
+        tabulate_results(newton_modified_results,
                                ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"]))
+                                "Абсолоютная величина невязки"])
 
         print("\nМетод секущих:\n")
         secant_results = self.apply_method(self.specify_secant)
-        print(tabulate_results(secant_results,
+        tabulate_results(secant_results,
                                ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"]))
+                                "Абсолоютная величина невязки"])
 
 
 if __name__ == '__main__':

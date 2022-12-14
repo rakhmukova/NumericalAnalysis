@@ -50,15 +50,12 @@ class Integration:
             moment = integrate.quad(lambda x: self.p(x) * x ** i, self.a, self.b)[0]
             moments.append(moment)
 
-        print("\nМоменты:")
-        print(tab(zip([f"m_{j}" for j in range(n)], moments), []))
+        tab(zip([f"m_{j}" for j in range(n)], moments), title="Моменты")
 
-        print("\nМатрица:")
-        print(tab(matrix, [f"x_{i}" for i in range(len(nodes))]))
+        tab(matrix, [f"x_{i}" for i in range(len(nodes))], "Матрица")
 
         coefficients = list(linalg.solve(matrix, moments))
-        print("\nКоэффициенты (решение линейного уравнения):")
-        print(tab(zip([f"A_{j}" for j in range(n)], coefficients), []))
+        tab(zip([f"A_{j}" for j in range(n)], coefficients), title="Коэффициенты (решение линейного уравнения)")
 
         value = 0
         for i in range(n):
@@ -149,10 +146,4 @@ class Integration:
 
         d, value = algebraic_precision_and_const_value[method]
         func_max = self.func_maximums[d]
-        # print(value)
-        # print(func_max)
-        # print(self.interval())
-        # print(self.h ** (d + 1))
-        result = value * func_max * self.interval() * self.h ** (d + 1)
-        # print(result)
-        return result
+        return value * func_max * self.interval() * self.h ** (d + 1)

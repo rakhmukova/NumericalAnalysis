@@ -70,19 +70,17 @@ class Interpolation:
 
         self.value_table = []
         self.fill_value_table()
-        print("\nЗначения функции в узлах интерполяции:\n")
-        print(tabulate_results(self.value_table, ["x_j", "f(x_j)"]))
+        tabulate_results(self.value_table, ["x_j", "f(x_j)"], "Значения функции в узлах интерполяции")
 
         self.x = float(input("\nВведите точку интерполирования: "))
 
         self.take_closest_points()
-        print("\nВозьмем ближайшие n + 1 точку к x:\n")
-        print(tabulate_results(self.value_table, ["x_j", "f(x_j)"]))
+        tabulate_results(self.value_table, ["x_j", "f(x_j)"], "Возьмем ближайшие n + 1 точку к x")
 
         self.diff_table = []
         self.fill_diff_table()
-        print("\nРазделенные разности:\n")
-        print(tabulate_results(zip(range(0, len(self.diff_table)), self.diff_table), ["k", "f(x_0; ...; x_k)"]))
+        tabulate_results(zip(range(0, len(self.diff_table)), self.diff_table), ["k", "f(x_0; ...; x_k)"],
+                         "Разделенные разности")
 
         print("\nЗначение многочленов:")
 

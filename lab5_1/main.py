@@ -41,21 +41,19 @@ class GaussianQuadratic:
             row = moments[i:self.N + i][::-1]
             matrix.append(row)
         right_part = moments[self.N:self.N * 2]
-        print(f'\nМатрица линейной системы: ')
-        print(tabulate_results(matrix, []))
-        print(f'\nПравая часть линейной системы: ')
-        print(tabulate_results(zip([f"m_{self.N - 1 + j}" for j in range(len(right_part))], right_part), []))
+        tabulate_results(matrix, title="Матрица линейной системы")
+        tabulate_results(zip([f"m_{self.N - 1 + j}" for j in range(len(right_part))], right_part),
+                               title="Правая часть линейной системы")
         coefficients = list(linalg.solve(matrix, right_part))
         return coefficients
 
     def build_polynom(self):
         moments = self.find_moments()
-        print('Моменты весовой функции:\n')
-        print(tabulate_results(zip(range(len(moments)), moments), ['i', 'm_i']))
+        tabulate_results(zip(range(len(moments)), moments), ['i', 'm_i'], "Моменты весовой функции")
 
         polynom_coefficients = self.find_polynom_coefficients(moments)
-        print('\nКоэффициенты ортогонального многочлена (решение системы):\n')
-        print(tabulate_results(zip(range(1, len(polynom_coefficients) + 1), polynom_coefficients), ['i', 'A_i']))
+        tabulate_results(zip(range(1, len(polynom_coefficients) + 1), polynom_coefficients), ['i', 'A_i'],
+                               "Коэффициенты ортогонального многочлена (решение системы)")
 
         def polynom(x):
             result = 0
@@ -77,8 +75,7 @@ class GaussianQuadratic:
         polynom = self.build_polynom()
         print(f'\n2. Нахождение корней ортогонального многочлена -- узлов КФ')
         nodes = self.find_roots(polynom)
-        print(f'\nКорни многочлена:\n')
-        print(tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), []))
+        tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
         print(f'\n2. Нахождение коэффициентов A_k и построение КФ')
         integration = Integration(self.a, self.b, self.f, self.p)

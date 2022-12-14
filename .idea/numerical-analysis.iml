@@ -4,7 +4,15 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/common/venv" />
-      <excludeFolder url="file://$MODULE_DIR$/lab3/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab4_1/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab4_2/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3_2/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3_1/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab4_3/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab4_4/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab5_1/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab5_2/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/lab5_3/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (numerical-analysis)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

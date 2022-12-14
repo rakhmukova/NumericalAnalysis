@@ -45,7 +45,7 @@ def execute():
         [poly_1_func, poly_0_func, zero_func, zero_func],
         [poly_2_func, poly_1_func, zero_func, zero_func],
     ]
-    print(tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция']))
+    tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция'])
     num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
     f = lambdify(x, functions[num_of_function])
@@ -73,8 +73,7 @@ def execute():
     names = [methods_and_name[1] for methods_and_name in methods_and_names]
     absolute_errors = [abs(precise_value - float(approximate_value)) for approximate_value in jhl]
     results = zip(names, jhl, absolute_errors)
-    print('Значения для разбиения m * l\n')
-    print(tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность']))
+    tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность'], "Значения для разбиения m * l")
 
     precision = [0, 0, 1, 1, 3]
     j = [specify(jh[i], jhl[i], l, precision[i]) for i in range(len(precision))]
@@ -82,8 +81,8 @@ def execute():
     absolute_errors = [abs(precise_value - float(approximate_value)) for approximate_value in j]
     relative_errors = [absolute_error / abs(precise_value) for absolute_error in absolute_errors]
     results = zip(names, j, absolute_errors, relative_errors)
-    print('\nУточненные значения по принципу Рунге:\n')
-    print(tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность', 'Относительная погрешность']))
+    tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность', 'Относительная погрешность'],
+                     "Уточненные значения по принципу Рунге")
 
 
 if __name__ == '__main__':
