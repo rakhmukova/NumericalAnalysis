@@ -18,7 +18,7 @@ class Integration:
         self.m = m
         self.h = None
         if m:
-            h = self.interval() / self.m
+            self.h = self.interval() / self.m
         self.func_maximums = []
         self.find_max(ders)
 
@@ -28,7 +28,7 @@ class Integration:
         for i in range(4):
             func_max = scipy.optimize.minimize_scalar(lambda x: -ders[i](x), bounds=[self.a, self.b],
                                                       method='bounded')
-            self.func_maximums.append(func_max['x'])
+            self.func_maximums.append(-func_max['fun'])
 
     def phi(self, x):
         return self.p(x) * self.f(x)
@@ -149,4 +149,10 @@ class Integration:
 
         d, value = algebraic_precision_and_const_value[method]
         func_max = self.func_maximums[d]
-        return value * func_max * self.interval() * self.h ** (d + 1)
+        # print(value)
+        # print(func_max)
+        # print(self.interval())
+        # print(self.h ** (d + 1))
+        result = value * func_max * self.interval() * self.h ** (d + 1)
+        # print(result)
+        return result
