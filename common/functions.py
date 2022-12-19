@@ -13,3 +13,11 @@ def tabulate_results(array, headers=None, title=None):
     if not headers:
         headers = ()
     print(tabulate(array, headers, tablefmt="github", colalign=("left",), numalign="left"))
+
+
+def abs_error(real, pred):
+    return abs(real - pred)
+
+
+def rel_error(real, pred):
+    return abs_error(real, pred) / abs(real)
