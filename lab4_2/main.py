@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols, exp, lambdify
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, abs_error
 from common.integrate import Integration
 
 
@@ -39,7 +39,7 @@ def execute():
         method, name = methods_and_name
         approximate_value = method()
         print(f"КФ {name} : {approximate_value}")
-        print(f"Абсолютная погрешность: {abs(precise_value - float(approximate_value))}\n")
+        print(f"Абсолютная погрешность: {abs_error(precise_value, float(approximate_value))}\n")
 
 
 if __name__ == '__main__':

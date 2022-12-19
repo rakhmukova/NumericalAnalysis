@@ -1,6 +1,6 @@
 import math
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, abs_error
 
 
 class Interpolation:
@@ -85,10 +85,10 @@ class Interpolation:
         print("\nЗначение многочленов:")
 
         lagrange = self.lagrange()
-        print(f"В форме Лагранжа {lagrange}, погрешность: {abs(self.func(self.x) - lagrange)}")
+        print(f"В форме Лагранжа {lagrange}, погрешность: {abs_error(self.func(self.x), lagrange)}")
 
         newton = self.newton()
-        print(f"В форме Ньютона {newton}, погрешность: {abs(self.func(self.x) - newton)}")
+        print(f"В форме Ньютона {newton}, погрешность: {abs_error(self.func(self.x), newton)}")
 
 
 def input_polynom_degree(m):

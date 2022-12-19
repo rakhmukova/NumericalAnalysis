@@ -1,6 +1,6 @@
 from sympy import symbols, lambdify, exp
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, abs_error
 from common.integrate import Integration
 
 
@@ -50,7 +50,7 @@ def execute():
         approximate_value = method()
         theoretical_error = integration.theoretical_error(method)
         print(f"Составная КФ {name} : {approximate_value}")
-        absolute_error = abs(precise_value - float(approximate_value))
+        absolute_error = abs_error(precise_value, float(approximate_value))
         print(f"Абсолютная погрешность: {absolute_error}")
         print(f'Относительная погрешность: {absolute_error / abs(precise_value)}')
         print(f'Теоретическая погрешность: {theoretical_error}\n')

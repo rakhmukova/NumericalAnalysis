@@ -1,6 +1,6 @@
 from sympy import symbols, lambdify, exp
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, abs_error
 from common.integrate import Integration
 
 
@@ -71,14 +71,14 @@ def execute():
     jhl = calc(methods_and_names)
 
     names = [methods_and_name[1] for methods_and_name in methods_and_names]
-    absolute_errors = [abs(precise_value - float(approximate_value)) for approximate_value in jhl]
+    absolute_errors = [abs_error(precise_value, float(approximate_value)) for approximate_value in jhl]
     results = zip(names, jhl, absolute_errors)
     tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность'], "Значения для разбиения m * l")
 
     precision = [0, 0, 1, 1, 3]
     j = [specify(jh[i], jhl[i], l, precision[i]) for i in range(len(precision))]
 
-    absolute_errors = [abs(precise_value - float(approximate_value)) for approximate_value in j]
+    absolute_errors = [abs_error(precise_value, float(approximate_value)) for approximate_value in j]
     relative_errors = [absolute_error / abs(precise_value) for absolute_error in absolute_errors]
     results = zip(names, j, absolute_errors, relative_errors)
     tabulate_results(results, ['Составная КФ', 'Значение', 'Абсолютная погрешность', 'Относительная погрешность'],

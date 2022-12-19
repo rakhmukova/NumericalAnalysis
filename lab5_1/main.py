@@ -3,7 +3,7 @@ import math
 from numpy.linalg import linalg
 from sympy import symbols
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, abs_error
 from lab1.main import Solver
 
 import scipy.integrate as integrate
@@ -109,6 +109,6 @@ if __name__ == '__main__':
 
     print(f"\nПриближенное значение интеграла: {approximate_value}")
     print(f"Точное значение интеграла: {precise_value}")
-    abs_mistake = abs(precise_value - float(approximate_value))
-    print(f"Значение абсолютной погрешности: {abs_mistake}")
-    print(f"Значение относительной погрешности: {abs(abs_mistake / precise_value)}")
+    abs_err = abs_error(precise_value, float(approximate_value))
+    print(f"Значение абсолютной погрешности: {abs_err}")
+    print(f"Значение относительной погрешности: {abs(abs_err / precise_value)}")

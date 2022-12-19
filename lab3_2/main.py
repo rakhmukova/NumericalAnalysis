@@ -1,5 +1,5 @@
 import math
-from common.functions import print_lab, tabulate_results as tab
+from common.functions import print_lab, tabulate_results as tab, abs_error
 import copy
 from sympy import *
 
@@ -67,7 +67,7 @@ class Differ:
             first_der = self.calc_first_der(i)
             result[i].append(first_der)
             real_first_der = self.real_first_der(self.nodes[i][0])
-            abs_err = abs(real_first_der - first_der)
+            abs_err = abs_error(real_first_der, first_der)
             result[i].append(abs_err)
             result[i].append(abs_err / real_first_der)
 
@@ -80,7 +80,7 @@ class Differ:
                 continue
 
             real_second_der = self.real_second_der(self.nodes[i][0])
-            abs_err = abs(real_second_der - second_der)
+            abs_err = abs_error(real_second_der, second_der)
             result[i].append(abs_err)
             result[i].append(abs_err / real_second_der)
 

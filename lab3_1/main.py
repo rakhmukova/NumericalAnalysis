@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from common.functions import print_lab, tabulate_results as tab
+from common.functions import print_lab, tabulate_results as tab, abs_error
 from lab1.main import Solver
 from scipy.interpolate import lagrange
 
@@ -78,7 +78,7 @@ class ReverseInterpolation:
         func_value = self.func(point_value)
         print(f"Исходное значение функции: {self.func_value}")
         print(f"Приближенное значение функции в точке: {func_value}")
-        print(f"Невязка: {abs(func_value - self.func_value)}")
+        print(f"Невязка: {abs_error(func_value, self.func_value)}")
 
         self.reverse_nodes_and_values()
 
@@ -96,7 +96,7 @@ class ReverseInterpolation:
         print(f"\nИсходное значение функции: {self.func_value}")
         print(f"\nКорни многочлена и значения:")
         func_values = [self.func(root) for root in roots]
-        abs_diff = [abs(func_value - self.func_value) for func_value in func_values]
+        abs_diff = [abs_error(func_value, self.func_value) for func_value in func_values]
         print(tab(zip(roots, func_values, abs_diff), ["x", "f(x)", "|f(x) - F|"]))
 
     def input_params(self):
