@@ -1,6 +1,6 @@
 import math
 
-from common.functions import tabulate_results
+from common.functions import tabulate_results, abs_error
 from common.integrate import Integration
 
 
@@ -36,4 +36,5 @@ if __name__ == '__main__':
         approximate_values.append(value)
 
     print(f'\nТочное значение: {precise_value}')
-    tabulate_results(zip(degrees, approximate_values), title='Приближенные значения интеграла')
+    absolute_errors = [abs_error(precise_value, approximate_value) for approximate_value in approximate_values]
+    tabulate_results(zip(degrees, approximate_values, absolute_errors), title='Приближенные значения интеграла')
