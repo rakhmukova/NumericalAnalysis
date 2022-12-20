@@ -3,7 +3,7 @@ import math
 
 from sympy import symbols, simplify, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders, show_error_info
 from lab1.main import find_roots
 from common.integrate import Integration
 
@@ -85,8 +85,7 @@ class GaussIntegration:
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, a=a, b=b)
             integration = Integration(a, b, self.f, lambda x: 1)
             precise_value = integration.precise()
-            print(f'\nПриближенное значение интеграла: {approximate_value}')
-            print(f"Точное значение интеграла: {precise_value}")
+            show_error_info(precise_value, approximate_value, show_rel_error=False)
 
     def integrate_compound_for_borders(self, degree, polynomials_nodes, coefficients, a, b, m):
         h = (b - a) / m
@@ -110,8 +109,7 @@ class GaussIntegration:
             approximate_value = self.integrate_compound_for_borders(degree, polynomials_nodes, coefficients, a, b, m)
             integration = Integration(a, b, self.f, lambda x: 1)
             precise_value = integration.precise()
-            print(f'\nПриближенное значение интеграла: {approximate_value}')
-            print(f"Точное значение интеграла: {precise_value}")
+            show_error_info(precise_value, approximate_value, show_rel_error=False)
 
     def check_for_polynomials(self, polynomials_nodes, coefficients):
         eps = math.pow(10, -12)
@@ -121,8 +119,7 @@ class GaussIntegration:
             integration = Integration(-1, 1, polynom, lambda x: 1)
             precise_value = integration.precise()
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, polynom)
-            print(f'\nПриближенное значение интеграла: {approximate_value}')
-            print(f"Точное значение интеграла: {precise_value}")
+            show_error_info(precise_value, approximate_value, show_rel_error=False)
             if abs_error(precise_value, approximate_value) < eps:
                 print('Проверка пройдена')
             else:

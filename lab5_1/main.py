@@ -3,7 +3,7 @@ import math
 from numpy.linalg import linalg
 from sympy import symbols
 
-from common.functions import print_lab, tabulate_results, abs_error, input_borders
+from common.functions import print_lab, tabulate_results, abs_error, input_borders, show_error_info
 from lab1.main import Solver, find_roots
 
 import scipy.integrate as integrate
@@ -101,8 +101,4 @@ if __name__ == '__main__':
     gaussian = GaussianQuadratic(a, b, f, p, N)
     approximate_value = gaussian.integrate()
 
-    print(f"\nПриближенное значение интеграла: {approximate_value}")
-    print(f"Точное значение интеграла: {precise_value}")
-    abs_err = abs_error(precise_value, float(approximate_value))
-    print(f"Значение абсолютной погрешности: {abs_err}")
-    print(f"Значение относительной погрешности: {abs(abs_err / precise_value)}")
+    show_error_info(precise_value, approximate_value)

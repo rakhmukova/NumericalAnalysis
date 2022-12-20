@@ -15,12 +15,12 @@ def tabulate_results(array, headers=None, title=None):
     print(tabulate(array, headers, tablefmt="github", colalign=("left",), numalign="left"))
 
 
-def abs_error(real, pred):
-    return abs(real - pred)
+def abs_error(precise, approximate):
+    return abs(precise - approximate)
 
 
-def rel_error(real, pred):
-    return abs_error(real, pred) / abs(real)
+def rel_error(precise, approximate):
+    return abs_error(precise, approximate) / abs(precise)
 
 
 def execution_loop(execute, *args):
@@ -34,3 +34,12 @@ def input_borders(def_a=None, def_b=None):
     a = float(input(f"Введите левую границу отрезка ({def_a}): ") or def_a)
     b = float(input(f"Введите правую границу отрезка ({def_b}): ") or def_b)
     return a, b
+
+
+def show_error_info(precise, approximate, show_rel_error=True):
+    print(f"\nПриближенное значение: {approximate}")
+    print(f"Точное (исходное) значение: {precise}")
+    abs_err = abs_error(precise, float(approximate))
+    print(f"Значение абсолютной погрешности: {abs_err}")
+    if show_rel_error:
+        print(f"Значение относительной погрешности: {abs(abs_err / precise)}")

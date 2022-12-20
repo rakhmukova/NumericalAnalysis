@@ -1,6 +1,6 @@
 import math
 
-from common.functions import print_lab, abs_error, input_borders
+from common.functions import print_lab, input_borders, show_error_info
 from common.integrate import Integration
 
 if __name__ == '__main__':
@@ -23,9 +23,4 @@ if __name__ == '__main__':
 
     precise_value = integration.precise()
     approximate_value = integration.approximate(nodes)
-
-    print(f"\nПриближенное значение интеграла: {approximate_value}")
-    print(f"Точное значение интеграла: {precise_value}")
-    abs_err = abs_error(precise_value, float(approximate_value))
-    print(f"Значение абсолютной погрешности: {abs_err}")
-    print(f"Значение относительной погрешности: {abs(abs_err/precise_value)}")
+    show_error_info(precise_value, approximate_value)
