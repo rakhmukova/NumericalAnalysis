@@ -32,5 +32,5 @@ def execution_loop(execute, *args):
 
 def input_borders(def_a=None, def_b=None):
     a = float(input(f"Введите левую границу отрезка ({def_a}): ") or def_a)
-    b = float(input(f"Введите правую границу ({def_b}): ") or def_b)
+    b = float(input(f"Введите правую границу отрезка ({def_b}): ") or def_b)
     return a, b
