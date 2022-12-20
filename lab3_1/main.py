@@ -86,7 +86,7 @@ class ReverseInterpolation:
         print("\nКоэффициенты интерполяционного многочлена:")
         tab(zip(range(self.n), lagrange_polynom.coef[::-1]), ["k", "coeff"])
 
-        roots = find_roots(equation, self.a, self.b, 100, self.ep)
+        roots = find_roots(equation, self.a, self.b, 100, self.eps)
         print(f"\nИсходное значение функции: {self.func_value}")
         print(f"\nКорни многочлена и значения:")
         func_values = [self.func(root) for root in roots]
