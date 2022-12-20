@@ -43,7 +43,7 @@ class GaussianQuadratic:
         right_part = list(map(lambda m: -m, moments[self.N:self.N * 2]))
         tabulate_results(matrix, title="Матрица линейной системы")
         tabulate_results(zip([f"m_{self.N - 1 + j}" for j in range(len(right_part))], right_part),
-                               title="Правая часть линейной системы")
+                         title="Правая часть линейной системы")
         coefficients = list(linalg.solve(matrix, right_part))
         return coefficients
 
@@ -53,7 +53,7 @@ class GaussianQuadratic:
 
         polynom_coefficients = self.find_polynom_coefficients(moments)
         tabulate_results(zip(range(1, len(polynom_coefficients) + 1), polynom_coefficients), ['i', 'A_i'],
-                               "Коэффициенты ортогонального многочлена (решение системы)")
+                         "Коэффициенты ортогонального многочлена (решение системы)")
 
         polynom_coefficients.reverse()
 
