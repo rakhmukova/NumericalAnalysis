@@ -142,14 +142,20 @@ class Solver:
 
 
 if __name__ == '__main__':
-    a = -15
-    b = 5
+    # a = -15
+    # b = 5
+    # N = 1000
     epsilon = math.pow(10, -5)
-    N = 1000
     def func(x): return 4 * math.cos(x) + 0.3 * x
 
     print_lab(1, "ЧИСЛЕННЫЕ МЕТОДЫ РЕШЕНИЯ НЕЛИНЕЙНЫХ УРАВНЕНИЙ")
-    print(f"Вариант 8. f(x)= 4cos(x) + 0,3x  a = {a}  b = {b} epsilon = {epsilon}")
+    print(f"Вариант 8. f(x)= 4cos(x) + 0,3x epsilon = {epsilon}")
 
-    solver = Solver(func, a, b, N, epsilon)
-    solver.execute()
+    to_quit = 1
+    while to_quit != 0:
+        a = float(input("Введите левую границу отрезка: "))
+        b = float(input("Введите правую границу: "))
+        N = int(input('Введите N: '))
+        solver = Solver(func, a, b, N, epsilon)
+        solver.execute()
+        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
