@@ -64,6 +64,7 @@ class GaussIntegration:
     def integrate_for_custom_borders(self, degree, polynomials_nodes, coefficients, f=None, a=-1, b=1):
         custom_nodes = copy.deepcopy(polynomials_nodes[degree - 1])
         custom_coefficients = copy.deepcopy(coefficients[degree - 1])
+        assert len(custom_nodes) == len(custom_coefficients) == degree
         sum_int = 0
         half = (b - a) / 2
         middle = (b + a) / 2
@@ -81,8 +82,32 @@ class GaussIntegration:
     def integrate_custom(self, polynomials_nodes, coefficients):
         a, b = input_borders()
         for degree in self.degrees:
-
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, a=a, b=b)
+            integration = Integration(a, b, self.f, lambda x: 1)
+            precise_value = integration.precise()
+            print(f'\nПриближенное значение интеграла: {approximate_value}')
+            print(f"Точное значение интеграла: {precise_value}")
+
+    def integrate_compound_for_borders(self, degree, polynomials_nodes, coefficients, a, b, m):
+        h = (b - a) / m
+        custom_nodes = polynomials_nodes[degree - 1]
+        custom_coefficients = coefficients[degree - 1]
+        assert len(custom_nodes) == len(custom_coefficients) == degree
+        value = 0
+        half = h / 2
+        diffs = [a + h*j + half for j in range(m)]
+        for k in range(len(custom_nodes)):
+            nodes = [half * custom_nodes[k] + diffs[j] for j in range(m)]
+            func_values = [self.f(node) for node in nodes]
+            value += sum(func_values) * custom_coefficients[k] * half
+
+        return value
+
+    def integrate_custom_compound(self, polynomials_nodes, coefficients):
+        a, b = input_borders(0, 10)
+        m = 5 # int(input('Введите m: '))
+        for degree in self.degrees:
+            approximate_value = self.integrate_compound_for_borders(degree, polynomials_nodes, coefficients, a, b, m)
             integration = Integration(a, b, self.f, lambda x: 1)
             precise_value = integration.precise()
             print(f'\nПриближенное значение интеграла: {approximate_value}')
@@ -107,6 +132,11 @@ class GaussIntegration:
         polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()
         self.check_for_polynomials(polynomials_nodes, coefficients)
         execution_loop(self.integrate_custom, polynomials_nodes, coefficients)
+
+    def integrate_compound(self):
+        polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()
+        self.check_for_polynomials(polynomials_nodes, coefficients)
+        execution_loop(self.integrate_custom_compound, polynomials_nodes, coefficients)
 
 
 if __name__ == '__main__':
