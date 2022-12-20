@@ -1,6 +1,6 @@
 from sympy import symbols, lambdify, exp
 
-from common.functions import print_lab, tabulate_results, abs_error
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop
 from common.integrate import Integration
 
 
@@ -89,7 +89,4 @@ if __name__ == '__main__':
     print_lab(4.3, 'Приближённое вычисление интеграла по составным квадратурным формулам')
     print(f"Вариант 8.\n")
 
-    to_quit = 1
-    while to_quit != 0:
-        execute()
-        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+    execution_loop(execute)

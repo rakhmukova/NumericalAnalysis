@@ -1,6 +1,6 @@
 import math
 
-from common.functions import print_lab, tabulate_results, abs_error
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop
 
 
 class Interpolation:
@@ -113,7 +113,4 @@ if __name__ == '__main__':
     def func(x): return 2 * math.sin(x) - x / 2  # -3 ** 6 + 2 * x ** 3 + x ** 2
 
     inter = Interpolation(m, a, b, func)
-    to_quit = 1
-    while to_quit != 0:
-        inter.execute()
-        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+    execution_loop(inter.execute)

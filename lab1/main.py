@@ -2,7 +2,7 @@ import numpy as np
 import scipy.misc as sc
 import math
 
-from common.functions import print_lab, tabulate_results
+from common.functions import print_lab, tabulate_results, execution_loop
 
 
 class Solver:
@@ -151,11 +151,11 @@ if __name__ == '__main__':
     print_lab(1, "ЧИСЛЕННЫЕ МЕТОДЫ РЕШЕНИЯ НЕЛИНЕЙНЫХ УРАВНЕНИЙ")
     print(f"Вариант 8. f(x)= 4cos(x) + 0,3x epsilon = {epsilon}")
 
-    to_quit = 1
-    while to_quit != 0:
+    def execute():
         a = float(input("Введите левую границу отрезка: "))
         b = float(input("Введите правую границу: "))
         N = int(input('Введите N: '))
         solver = Solver(func, a, b, N, epsilon)
         solver.execute()
-        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+
+    execution_loop(execute)

@@ -1,5 +1,5 @@
 import math
-from common.functions import print_lab, tabulate_results as tab, abs_error
+from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop
 import copy
 from sympy import *
 
@@ -59,7 +59,7 @@ class Differ:
         self.nodes = []
         self.set_nodes()
         print()
-        print(tab(self.nodes, ["x_j", "f(x_j)"]))
+        tab(self.nodes, ["x_j", "f(x_j)"])
         print()
 
         result = copy.deepcopy(self.nodes)
@@ -84,8 +84,8 @@ class Differ:
             result[i].append(abs_err)
             result[i].append(abs_err / real_second_der)
 
-        print(tab(result, ["x_i", "f(x_i)", "f'(x_i)", "abs f'", "rel f'", """ f"(x_i) """,
-                           """ abs f" """, """ rel f" """]))
+        tab(result, ["x_i", "f(x_i)", "f'(x_i)", "abs f'", "rel f'", """ f"(x_i) """,
+                           """ abs f" """, """ rel f" """])
 
 
 if __name__ == '__main__':
@@ -98,9 +98,8 @@ if __name__ == '__main__':
     def second_der(x): return k * first_der(x)
     differ = Differ(func, first_der, second_der)
 
-    to_quit = 1
-    while to_quit == 1:
+    def execute():
         differ.input_params()
         differ.calc_derivatives()
-        to_quit = int(input("\nВведите 0, чтобы выйти. Другую цифру, чтобы повторить: "))
-        print()
+
+    execution_loop(execute)

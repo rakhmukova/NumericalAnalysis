@@ -21,3 +21,10 @@ def abs_error(real, pred):
 
 def rel_error(real, pred):
     return abs_error(real, pred) / abs(real)
+
+
+def execution_loop(execute, *args):
+    to_quit = 1
+    while to_quit != 0:
+        execute(*args)
+        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))

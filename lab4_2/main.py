@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols, exp, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop
 from common.integrate import Integration
 
 
@@ -49,7 +49,4 @@ if __name__ == '__main__':
     print_lab(4.2, 'Приближённое вычисление интеграла по простым квадратурным формулам')
     print(f"Вариант 8")
 
-    to_quit = 1
-    while to_quit != 0:
-        execute()
-        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+    execution_loop(execute)

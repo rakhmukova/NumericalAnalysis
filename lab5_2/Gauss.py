@@ -3,7 +3,7 @@ import math
 
 from sympy import symbols, simplify, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop
 from lab1.main import Solver
 from common.integrate import Integration
 
@@ -117,10 +117,7 @@ class GaussIntegration:
     def integrate(self):
         polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()
         self.check_for_polynomials(polynomials_nodes, coefficients)
-        to_quit = 1
-        while to_quit != 0:
-            self.integrate_custom(polynomials_nodes, coefficients)
-            to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+        execution_loop(self.integrate_custom, polynomials_nodes, coefficients)
 
 
 if __name__ == '__main__':

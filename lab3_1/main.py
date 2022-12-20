@@ -133,7 +133,4 @@ if __name__ == '__main__':
     b = float(input("Введите правую границу (1): ") or '1')
 
     interpolation = ReverseInterpolation(func, a, b, m)
-    q = 1
-    while q != 0:
-        interpolation.execute(can_use_first_method=True)
-        q = int(input("\nВведите 0, чтобы выйти. Другую цифру, чтобы продолжить: "))
+    execution_loop(interpolation.execute, True)
