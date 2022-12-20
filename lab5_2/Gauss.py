@@ -8,7 +8,7 @@ from lab1.main import find_roots
 from common.integrate import Integration
 
 
-class GaussIntegration:
+class GaussFormula:
     def __init__(self, f, degrees):
         self.f = f
         self.degrees = degrees
@@ -149,5 +149,5 @@ if __name__ == '__main__':
     print(f"Вариант 8. \nf(x)=cos(x**2)")
 
     degrees = [3, 6, 7, 8]
-    gauss = GaussIntegration(f, degrees)
+    gauss = GaussFormula(f, degrees)
     gauss.integrate()

@@ -11,7 +11,7 @@ import scipy.integrate as integrate
 from common.integrate import Integration
 
 
-class GaussianQuadratic:
+class GaussianFormula:
 
     def __init__(self, a, b, f, p, N):
         self.a = a
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     integration = Integration(a, b, f, p)
     precise_value = integration.precise()
 
-    gaussian = GaussianQuadratic(a, b, f, p, N)
+    gaussian = GaussianFormula(a, b, f, p, N)
     approximate_value = gaussian.integrate()
 
     show_error_info(precise_value, approximate_value)

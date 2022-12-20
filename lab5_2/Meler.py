@@ -4,7 +4,7 @@ from common.functions import tabulate_results, abs_error, print_lab
 from common.integrate import Integration
 
 
-class MelerIntegration:
+class MelerFormula:
     def __init__(self, f, N):
         self.f = f
         self.N = N
@@ -33,7 +33,7 @@ if __name__ == '__main__':
     degrees = input('Введите N1, N2, N3: ').split()
     approximate_values = []
     for degree in degrees:
-        meler = MelerIntegration(f, int(degree))
+        meler = MelerFormula(f, int(degree))
         value = meler.integrate()
         approximate_values.append(value)
 

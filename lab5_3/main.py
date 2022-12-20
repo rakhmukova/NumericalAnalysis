@@ -1,7 +1,7 @@
 import math
 
 from common.functions import print_lab, execution_loop
-from lab5_2.Gauss import GaussIntegration
+from lab5_2.Gauss import GaussFormula
 
 if __name__ == '__main__':
 
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     def execute():
         N = 10 # int(input('\nВведите N: '))
         degrees = [N]
-        gauss = GaussIntegration(f, degrees)
+        gauss = GaussFormula(f, degrees)
         gauss.integrate_compound()
 
     execution_loop(execute)
