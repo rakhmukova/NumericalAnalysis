@@ -33,10 +33,6 @@ class Solver:
             x2 += h
             y1 = y2
 
-        print(f"\nОтделение корней:\n")
-        tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
-                               ["Номер", "Интервал"])
-
     def specify_bisection(self, ai, bi):
         step = 0
         while (bi - ai) > 2 * self.epsilon:
@@ -114,7 +110,10 @@ class Solver:
         return roots
 
     def execute(self):
+        print(f"\nОтделение корней:\n")
         self.separate_roots()
+        tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
+                         ["Номер", "Интервал"])
 
         print("\nБисекция:\n")
         bisection_results = self.apply_method(self.specify_bisection)
