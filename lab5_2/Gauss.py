@@ -121,9 +121,6 @@ if __name__ == '__main__':
     print_lab(5.2, "Вычисление интегралов при помощи КФ Гаусса")
     print(f"Вариант 8. \nf(x)=cos(x**2)")
 
-    integration = Integration(-1, 1, f, p)
-    precise_value = integration.precise()
-
     degrees = [3, 6, 7, 8]
     gauss = GaussIntegration(f, degrees)
     gauss.integrate()
