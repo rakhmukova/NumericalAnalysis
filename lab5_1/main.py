@@ -4,7 +4,7 @@ from numpy.linalg import linalg
 from sympy import symbols
 
 from common.functions import print_lab, tabulate_results, abs_error
-from lab1.main import Solver
+from lab1.main import Solver, find_roots
 
 import scipy.integrate as integrate
 
@@ -20,12 +20,6 @@ class GaussianQuadratic:
         self.p = p
         self.N = N
         self.eps = math.pow(10, -12)
-
-    def find_roots(self, equation):
-        n = 100
-        solver = Solver(equation, self.a, self.b, n, self.eps)
-        solver.separate_roots()
-        return solver.bisection()
 
     def find_moments(self):
         moments = []
@@ -75,7 +69,7 @@ class GaussianQuadratic:
         print(f'\n1. Построение ортогонального многочлена')
         polynom = self.build_polynom()
         print(f'\n2. Нахождение корней ортогонального многочлена -- узлов КФ')
-        nodes = self.find_roots(polynom)
+        nodes = find_roots(polynom, self.a, self.b, 100, self.eps)
         tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
         print(f'\n3. Нахождение коэффициентов A_k и построение КФ')

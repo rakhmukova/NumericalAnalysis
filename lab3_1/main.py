@@ -3,7 +3,7 @@ import math
 import numpy as np
 
 from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop
-from lab1.main import Solver
+from lab1.main import find_roots
 from scipy.interpolate import lagrange
 
 
@@ -53,12 +53,6 @@ class ReverseInterpolation:
         y = np.array([self.value_table[i][1] for i in range(self.n)])
         return lagrange(x, y)
 
-    def find_roots(self, equation):
-        n = 100
-        solver = Solver(equation, self.a, self.b, n, self.eps)
-        solver.separate_roots()
-        return solver.bisection()
-
     def interpolate_with_first_method(self):
         self.reverse_nodes_and_values()
         print("\nПоменяем местами колонки в таблице:")
@@ -92,7 +86,7 @@ class ReverseInterpolation:
         print("\nКоэффициенты интерполяционного многочлена:")
         tab(zip(range(self.n), lagrange_polynom.coef[::-1]), ["k", "coeff"])
 
-        roots = self.find_roots(equation)
+        roots = find_roots(equation, self.a, self.b, 100, self.ep)
         print(f"\nИсходное значение функции: {self.func_value}")
         print(f"\nКорни многочлена и значения:")
         func_values = [self.func(root) for root in roots]

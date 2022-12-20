@@ -4,7 +4,7 @@ import math
 from sympy import symbols, simplify, lambdify
 
 from common.functions import print_lab, tabulate_results, abs_error, execution_loop
-from lab1.main import Solver
+from lab1.main import find_roots
 from common.integrate import Integration
 
 
@@ -27,12 +27,6 @@ class GaussIntegration:
             p0, p1 = p1, p2
 
         return list(map(lambda p: simplify(p), polynomials))
-
-    def find_roots(self, equation):
-        n = 100
-        solver = Solver(equation, -1, 1, n, self.eps)
-        solver.separate_roots()
-        return solver.bisection()
 
     def calc_coefficients(self, polynomials, nodes):
         coefficients = []
@@ -58,7 +52,7 @@ class GaussIntegration:
             func_polynomials.append(polynom)
             if degree == 0:
                 continue
-            polynom_nodes = self.find_roots(polynom)
+            polynom_nodes = find_roots(polynom, -1, 1, 100, self.eps)
             polynomials_nodes.append(polynom_nodes)
 
         tabulate_results(polynomials_nodes, title="Узлы многочленов Лежандра")

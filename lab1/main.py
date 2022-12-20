@@ -141,6 +141,20 @@ class Solver:
                                 "Абсолоютная величина невязки"])
 
 
+def find_roots(equation, a, b, N, epsilon, method_name='bisection'):
+    solver = Solver(equation, a, b, N, epsilon)
+    solver.separate_roots()
+    methods = {
+        'bisection': solver.specify_bisection,
+        'newton': solver.specify_newton,
+        'newton_modified': solver.specify_newton_modified,
+        'secant': solver.specify_secant
+    }
+
+    method_result = solver.apply_method(methods[method_name])
+    return [method_result[i][1] for i in range(len(method_result))]
+
+
 if __name__ == '__main__':
     # a = -15
     # b = 5
