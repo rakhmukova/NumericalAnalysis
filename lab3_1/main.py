@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop
+from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop, input_borders
 from lab1.main import find_roots
 from scipy.interpolate import lagrange
 
@@ -123,8 +123,7 @@ if __name__ == '__main__':
     def func(x): return math.sin(x) * 2 - x / 2
 
     m = int(input("Введите количество узлов (16): ") or '16') - 1
-    a = float(input("Введите левую границу отрезка (0): ") or '0')
-    b = float(input("Введите правую границу (1): ") or '1')
+    a, b = input_borders(0, 1)
 
     interpolation = ReverseInterpolation(func, a, b, m)
     execution_loop(interpolation.execute, True)

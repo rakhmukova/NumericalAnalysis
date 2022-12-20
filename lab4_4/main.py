@@ -1,6 +1,6 @@
 from sympy import symbols, lambdify, exp
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
 from common.integrate import Integration
 
 
@@ -51,8 +51,7 @@ def execute():
     f = lambdify(x, functions[num_of_function])
     ders = list(map(lambda der: lambdify(x, der), derivatives[num_of_function]))
 
-    a = float(input("Введите левый предел интегрирования (0.0): ") or '0')
-    b = float(input("Введите правый предел интегрирования (1.0): ") or '1')
+    a, b = input_borders(0, 1)
     m = int(input("Введите m (100): ") or '100')
     l = int(input("Введите l (100): ") or '100')
 

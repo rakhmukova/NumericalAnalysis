@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols, exp, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
 from common.integrate import Integration
 
 
@@ -19,8 +19,7 @@ def execute():
 
     f = lambdify(x, functions[num_of_function])
 
-    a = float(input("Введите левый предел интегрирования: "))
-    b = float(input("Введите правый предел интегрирования: "))
+    a, b = input_borders()
     def p(x): return 1
     integration = Integration(a, b, f, p)
     precise_value = integration.precise()

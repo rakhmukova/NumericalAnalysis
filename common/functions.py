@@ -28,3 +28,9 @@ def execution_loop(execute, *args):
     while to_quit != 0:
         execute(*args)
         to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру, чтобы продолжить: "))
+
+
+def input_borders(def_a=None, def_b=None):
+    a = float(input(f"Введите левую границу отрезка ({def_a}): ") or def_a)
+    b = float(input(f"Введите правую границу ({def_b}): ") or def_b)
+    return a, b

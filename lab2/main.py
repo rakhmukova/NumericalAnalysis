@@ -1,6 +1,6 @@
 import math
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
 
 
 class Interpolation:
@@ -107,8 +107,7 @@ if __name__ == '__main__':
     print("Вариант 8. f(x)=2sin(x)-x/2  a = 0,2  b = 0,7  x = 0.35  n = 7  m = 15")
 
     m = 15  # int(input("Введите количество узлов интерполирования: ")) - 1
-    a = 0.2  # float(input("Введите левую границу отрезка: "))
-    b = 0.7  # float(input("Введите правую границу отрезка: "))
+    a, b = input_borders(0.2, 0.7)
 
     def func(x): return 2 * math.sin(x) - x / 2  # -3 ** 6 + 2 * x ** 3 + x ** 2
 

@@ -3,7 +3,7 @@ import math
 
 from sympy import symbols, simplify, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
 from lab1.main import find_roots
 from common.integrate import Integration
 
@@ -61,11 +61,6 @@ class GaussIntegration:
         tabulate_results(coefficients, title="Коэффициенты КФ Гаусса")
         return polynomials_nodes, coefficients
 
-    def input_borders(self):
-        borders = input('\nВведите промежутки интегрирования: ').split()
-        a, b = list(map(lambda x: float(x), borders))
-        return a, b
-
     def integrate_for_custom_borders(self, degree, polynomials_nodes, coefficients, f=None, a=-1, b=1):
         custom_nodes = copy.deepcopy(polynomials_nodes[degree - 1])
         custom_coefficients = copy.deepcopy(coefficients[degree - 1])
@@ -84,7 +79,7 @@ class GaussIntegration:
         return sum_int
 
     def integrate_custom(self, polynomials_nodes, coefficients):
-        a, b = self.input_borders()
+        a, b = input_borders()
         for degree in self.degrees:
 
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, a=a, b=b)

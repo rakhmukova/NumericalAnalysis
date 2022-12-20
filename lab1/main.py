@@ -2,7 +2,7 @@ import numpy as np
 import scipy.misc as sc
 import math
 
-from common.functions import print_lab, tabulate_results, execution_loop
+from common.functions import print_lab, tabulate_results, execution_loop, input_borders
 
 
 class Solver:
@@ -166,8 +166,7 @@ if __name__ == '__main__':
     print(f"Вариант 8. f(x)= 4cos(x) + 0,3x epsilon = {epsilon}")
 
     def execute():
-        a = float(input("Введите левую границу отрезка: "))
-        b = float(input("Введите правую границу: "))
+        a, b = input_borders()
         N = int(input('Введите N: '))
         solver = Solver(func, a, b, N, epsilon)
         solver.execute()

@@ -1,11 +1,10 @@
 import math
 
-from common.functions import print_lab, abs_error
+from common.functions import print_lab, abs_error, input_borders
 from common.integrate import Integration
 
 if __name__ == '__main__':
-    a = 0
-    b = 1
+    a, b = input_borders(0, 1)
 
     def f(x):
         return math.sin(x)

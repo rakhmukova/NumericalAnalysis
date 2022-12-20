@@ -3,7 +3,7 @@ import math
 from numpy.linalg import linalg
 from sympy import symbols
 
-from common.functions import print_lab, tabulate_results, abs_error
+from common.functions import print_lab, tabulate_results, abs_error, input_borders
 from lab1.main import Solver, find_roots
 
 import scipy.integrate as integrate
@@ -81,8 +81,7 @@ if __name__ == '__main__':
     print_lab(5.1, "Приближённое вычисление интегралов при помощи КФ НАСТ")
     print(f"Вариант 8. f(x)=sin(x) p(x)=exp(x)\n")
 
-    a = 0  # float(input("Введите левый предел интегрирования (0.0): ") or '0')
-    b = 1  # float(input("Введите правый предел интегрирования (1.0): ") or '1')
+    a, b = input_borders(0, 1)
     N = 10  # int(input("Введите количество узлов (10): ") or '10')
 
 
