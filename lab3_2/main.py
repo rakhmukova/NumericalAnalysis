@@ -85,7 +85,7 @@ class Differ:
             result[i].append(abs_err / real_second_der)
 
         tab(result, ["x_i", "f(x_i)", "f'(x_i)", "abs f'", "rel f'", """ f"(x_i) """,
-                           """ abs f" """, """ rel f" """])
+                     """ abs f" """, """ rel f" """])
 
 
 if __name__ == '__main__':
@@ -93,13 +93,23 @@ if __name__ == '__main__':
     print("Вариант 8. f(x)=exp(1.5 * 4 * x)\n")
 
     k = 1.5 * 4
+
+
     def func(x): return math.exp(k * x)
+
+
     def first_der(x): return k * func(x)
+
+
     def second_der(x): return k * first_der(x)
+
+
     differ = Differ(func, first_der, second_der)
+
 
     def execute():
         differ.input_params()
         differ.calc_derivatives()
+
 
     execution_loop(execute)
