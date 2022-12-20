@@ -31,7 +31,7 @@ class Solver:
                 self.intervals.append((x1, x2))
             x1 += h
             x2 += h
-            y1 = self.func(x1)
+            y1 = y2
 
         print(f"\nОтделение корней:\n")
         tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
