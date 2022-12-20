@@ -40,7 +40,7 @@ class GaussianQuadratic:
         for i in range(self.N):
             row = moments[i:self.N + i][::-1]
             matrix.append(row)
-        right_part = moments[self.N:self.N * 2]
+        right_part = list(map(lambda m: -m, moments[self.N:self.N * 2]))
         tabulate_results(matrix, title="Матрица линейной системы")
         tabulate_results(zip([f"m_{self.N - 1 + j}" for j in range(len(right_part))], right_part),
                                title="Правая часть линейной системы")
@@ -55,9 +55,10 @@ class GaussianQuadratic:
         tabulate_results(zip(range(1, len(polynom_coefficients) + 1), polynom_coefficients), ['i', 'A_i'],
                                "Коэффициенты ортогонального многочлена (решение системы)")
 
+        polynom_coefficients.reverse()
+
         def polynom(x):
             result = 0
-            polynom_coefficients.reverse()
             x_degree = 1
             for coefficient in polynom_coefficients:
                 result += coefficient * x_degree
@@ -77,7 +78,7 @@ class GaussianQuadratic:
         nodes = self.find_roots(polynom)
         tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
-        print(f'\n2. Нахождение коэффициентов A_k и построение КФ')
+        print(f'\n3. Нахождение коэффициентов A_k и построение КФ')
         integration = Integration(self.a, self.b, self.f, self.p)
         return integration.approximate(nodes)
 
@@ -88,7 +89,7 @@ if __name__ == '__main__':
 
     a = 0  # float(input("Введите левый предел интегрирования (0.0): ") or '0')
     b = 1  # float(input("Введите правый предел интегрирования (1.0): ") or '1')
-    N = 10  # int(input("Введите количество узлов (10): ") or '3')
+    N = 10  # int(input("Введите количество узлов (10): ") or '10')
 
 
     def validation_polynom(x): return x ** (2 * N - 1)
@@ -101,10 +102,10 @@ if __name__ == '__main__':
     def p(x): return math.exp(x)
 
 
-    integration = Integration(a, b, validation_polynom, p)
+    integration = Integration(a, b, f, p)
     precise_value = integration.precise()
 
-    gaussian = GaussianQuadratic(a, b, validation_polynom, p, N)
+    gaussian = GaussianQuadratic(a, b, f, p, N)
     approximate_value = gaussian.integrate()
 
     print(f"\nПриближенное значение интеграла: {approximate_value}")
