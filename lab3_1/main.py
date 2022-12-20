@@ -2,7 +2,7 @@ import math
 
 import numpy as np
 
-from common.functions import print_lab, tabulate_results as tab, abs_error
+from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop
 from lab1.main import Solver
 from scipy.interpolate import lagrange
 
@@ -90,14 +90,14 @@ class ReverseInterpolation:
         lagrange_polynom = self.build_polynom()
         def equation(x): return lagrange_polynom(x) - self.func_value
         print("\nКоэффициенты интерполяционного многочлена:")
-        print(tab(zip(range(self.n), lagrange_polynom.coef[::-1]), ["k", "coeff"]))
+        tab(zip(range(self.n), lagrange_polynom.coef[::-1]), ["k", "coeff"])
 
         roots = self.find_roots(equation)
         print(f"\nИсходное значение функции: {self.func_value}")
         print(f"\nКорни многочлена и значения:")
         func_values = [self.func(root) for root in roots]
         abs_diff = [abs_error(func_value, self.func_value) for func_value in func_values]
-        print(tab(zip(roots, func_values, abs_diff), ["x", "f(x)", "|f(x) - F|"]))
+        tab(zip(roots, func_values, abs_diff), ["x", "f(x)", "|f(x) - F|"])
 
     def input_params(self):
         self.func_value = float(input("Введите F (0.28): ") or '0.28')
