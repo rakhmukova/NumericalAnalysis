@@ -3,7 +3,7 @@ import math
 
 from common.functions import tabulate_results, abs_error, execution_loop, input_borders, show_error_info
 from integration_formula.gauss_base import GaussBase
-from common.integrate import Integration
+from integration_formula.precise import Precise
 
 
 class GaussFormula(GaussBase):
@@ -32,8 +32,8 @@ class GaussFormula(GaussBase):
         a, b = input_borders()
         for degree in self.degrees:
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, a=a, b=b)
-            integration = Integration(a, b, self.f, lambda x: 1)
-            precise_value = integration.precise()
+            precise = Precise(a, b, self.f, lambda x: 1)
+            precise_value = precise.integrate()
             show_error_info(precise_value, approximate_value, show_rel_error=False)
 
     def check_for_polynomials(self, polynomials_nodes, coefficients):
@@ -41,8 +41,8 @@ class GaussFormula(GaussBase):
         print(f'\nПроверим точность для многочленов (eps = {eps}):')
         for degree in self.degrees:
             def polynom(x): return 2 * x ** (2 * degree - 1)
-            integration = Integration(-1, 1, polynom, lambda x: 1)
-            precise_value = integration.precise()
+            precise = Precise(-1, 1, polynom, lambda x: 1)
+            precise_value = precise.integrate()
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, polynom)
             show_error_info(precise_value, approximate_value, show_rel_error=False)
             if abs_error(precise_value, approximate_value) < eps:

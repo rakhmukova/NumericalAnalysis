@@ -1,6 +1,6 @@
 from common.functions import execution_loop, input_borders, show_error_info
-from common.integrate import Integration
 from integration_formula.gauss_base import GaussBase
+from integration_formula.precise import Precise
 
 
 class CompoundGaussFormula(GaussBase):
@@ -29,8 +29,8 @@ class CompoundGaussFormula(GaussBase):
         m = 5  # int(input('Введите m: '))
         for degree in self.degrees:
             approximate_value = self.integrate_compound_for_borders(degree, polynomials_nodes, coefficients, a, b, m)
-            integration = Integration(a, b, self.f, lambda x: 1)
-            precise_value = integration.precise()
+            precise = Precise(a, b, self.f, lambda x: 1)
+            precise_value = precise.integrate()
             show_error_info(precise_value, approximate_value, show_rel_error=False)
 
     def integrate_compound(self):
