@@ -143,6 +143,7 @@ class Solver:
             results = self.apply_method(method)
         if print_info:
             tabulate_results(results, method_info['results'])
+        return results
 
     def execute(self):
 
@@ -160,7 +161,7 @@ class Solver:
 
 def find_roots(equation, a, b, N, epsilon, method_name='bisection', print_info=True):
     solver = Solver(equation, a, b, N, epsilon)
-    solver.separate_roots()
+    solver.call_method(solver.separate_roots, print_info)
 
     methods = {
         'bisection': solver.specify_bisection,
@@ -169,7 +170,7 @@ def find_roots(equation, a, b, N, epsilon, method_name='bisection', print_info=T
         'secant': solver.specify_secant
     }
 
-    method_result = solver.apply_method(methods[method_name])
+    method_result = solver.call_method(methods[method_name], print_info)
     return [method_result[i][1] for i in range(len(method_result))]
 
 
