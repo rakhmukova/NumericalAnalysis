@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols
 
-from common.functions import tabulate_results, show_error_info, divide_epochs
+from common.functions import tabulate_results, show_error_info, divide_epochs, check_precision
 from integration_formula.approximate import Approximate
 from integration_formula.precise import Precise
 from lab1.main import find_roots
@@ -79,6 +79,7 @@ class GaussianFormula:
         approximate_value = approximate.integrate(nodes)
 
         show_error_info(precise_value, approximate_value)
+        check_precision(precise_value, approximate_value)
 
     def integrate(self):
         divide_epochs()

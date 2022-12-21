@@ -1,7 +1,8 @@
 import copy
 import math
 
-from common.functions import tabulate_results, abs_error, execution_loop, input_borders, show_error_info
+from common.functions import tabulate_results, abs_error, execution_loop, input_borders, show_error_info, \
+    check_precision
 from integration_formula.gauss_base import GaussBase
 from integration_formula.precise import Precise
 
@@ -45,10 +46,7 @@ class GaussFormula(GaussBase):
             precise_value = precise.integrate()
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, polynom)
             show_error_info(precise_value, approximate_value, show_rel_error=False)
-            if abs_error(precise_value, approximate_value) < eps:
-                print('Проверка пройдена')
-            else:
-                print('Проверка не пройдена')
+            check_precision(precise_value, approximate_value)
 
     def integrate(self):
         polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()

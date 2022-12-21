@@ -10,7 +10,7 @@ if __name__ == '__main__':
     print(f"Вариант 8. f(x)=sin(x) p(x)=exp(x)\n")
 
     a, b = input_borders(0, 1)
-    N = 10  # int(input("Введите количество узлов (10): ") or '10')
+    N = int(input("Введите количество узлов (10): ") or '10')
 
     def f(x):
         return math.sin(x)
