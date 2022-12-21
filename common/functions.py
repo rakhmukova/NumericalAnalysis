@@ -43,3 +43,7 @@ def show_error_info(precise, approximate, show_rel_error=True):
     print(f"Значение абсолютной погрешности: {abs_err}")
     if show_rel_error:
         print(f"Значение относительной погрешности: {abs(abs_err / precise)}")
+
+
+def divide_epochs():
+    print('\n-----------------------------------------------------------------------')
