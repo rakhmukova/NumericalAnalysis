@@ -1,3 +1,5 @@
+import copy
+
 import numpy as np
 import scipy.misc as sc
 import math
@@ -60,7 +62,8 @@ class Solver:
             x2 += h
             y1 = y2
 
-        return zip(range(1, len(self.intervals) + 1), self.intervals)
+        # print(self.intervals)
+        return zip(range(1, len(self.intervals) + 1), copy.deepcopy(self.intervals))
 
     def specify_bisection(self, ai, bi):
         step = 0
@@ -130,39 +133,30 @@ class Solver:
         return results
 
     def execute(self):
-        print(f"\nОтделение корней:\n")
-        results = self.separate_roots()
-        tabulate_results(results,
-                         ["Номер", "Интервал"])
+        separate = self.separate_roots
+        method_info = self.methods_info[separate]
+        print(f'''\n{method_info['name']}\n''')
+        results = separate()
+        tabulate_results(results, method_info['results'])
 
-        print("\nБисекция:\n")
-        bisection_results = self.apply_method(self.specify_bisection)
-        tabulate_results(bisection_results,
-                               ["Корень", "Количество шагов", "Длина последнего отрезка",
-                                "Абсолоютная величина невязки"])
+        methods = [
+            self.specify_bisection,
+            self.specify_newton,
+            self.specify_newton_modified,
+            self.specify_secant
+        ]
 
-        print("\nМетод Ньютона:\n")
-        newton_results = self.apply_method(self.specify_newton)
-        tabulate_results(newton_results,
-                               ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"])
-
-        print("\nМодифицированный метод Ньютона:\n")
-        newton_modified_results = self.apply_method(self.specify_newton_modified)
-        tabulate_results(newton_modified_results,
-                               ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"])
-
-        print("\nМетод секущих:\n")
-        secant_results = self.apply_method(self.specify_secant)
-        tabulate_results(secant_results,
-                               ["Корень", "Количество шагов",
-                                "Абсолоютная величина невязки"])
+        for method in methods:
+            method_info = self.methods_info[method]
+            print(f'''\n{method_info['name']}\n''')
+            results = self.apply_method(method)
+            tabulate_results(results, method_info['results'])
 
 
 def find_roots(equation, a, b, N, epsilon, method_name='bisection'):
     solver = Solver(equation, a, b, N, epsilon)
     solver.separate_roots()
+
     methods = {
         'bisection': solver.specify_bisection,
         'newton': solver.specify_newton,
