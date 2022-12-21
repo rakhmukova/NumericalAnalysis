@@ -1,3 +1,5 @@
+import math
+
 from tabulate import tabulate
 
 
@@ -47,3 +49,11 @@ def show_error_info(precise, approximate, show_rel_error=True):
 
 def divide_epochs():
     print('\n---------------------------------------------------------------------------------')
+
+
+def check_precision(precise, approximate, eps=math.pow(10, -12)):
+    if abs_error(precise, approximate) < eps:
+        if abs_error(precise, approximate) < eps:
+            print('Проверка пройдена')
+        else:
+            print('Проверка не пройдена')
