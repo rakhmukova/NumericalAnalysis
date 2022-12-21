@@ -132,14 +132,22 @@ class Solver:
             print("Другие корни нельзя уточнить. Третье условие теоремы о сходимости не выполнено\n")
         return results
 
+    def call_method(self, method, print_info=True):
+        method_info = self.methods_info[method]
+        if print_info:
+            print(f'''\n{method_info['name']}\n''')
+        results = None
+        if method == self.separate_roots:
+            results = method()
+        else:
+            results = self.apply_method(method)
+        if print_info:
+            tabulate_results(results, method_info['results'])
+
     def execute(self):
-        separate = self.separate_roots
-        method_info = self.methods_info[separate]
-        print(f'''\n{method_info['name']}\n''')
-        results = separate()
-        tabulate_results(results, method_info['results'])
 
         methods = [
+            self.separate_roots,
             self.specify_bisection,
             self.specify_newton,
             self.specify_newton_modified,
@@ -147,13 +155,10 @@ class Solver:
         ]
 
         for method in methods:
-            method_info = self.methods_info[method]
-            print(f'''\n{method_info['name']}\n''')
-            results = self.apply_method(method)
-            tabulate_results(results, method_info['results'])
+            self.call_method(method)
 
 
-def find_roots(equation, a, b, N, epsilon, method_name='bisection'):
+def find_roots(equation, a, b, N, epsilon, method_name='bisection', print_info=True):
     solver = Solver(equation, a, b, N, epsilon)
     solver.separate_roots()
 
