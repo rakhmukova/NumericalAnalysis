@@ -1,8 +1,7 @@
 import copy
 import math
 
-from common.functions import tabulate_results, abs_error, execution_loop, input_borders, show_error_info, \
-    check_precision
+from common.functions import tabulate_results, execution_loop, input_borders, show_error_info, check_precision
 from integration_formula.gauss_base import GaussBase
 from integration_formula.precise import Precise
 
