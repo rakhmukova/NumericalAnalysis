@@ -1,16 +1,19 @@
 import math
 
 from common.functions import print_lab, abs_error
-from common.integrate import Integration
 from integration_formula.meler import MelerFormula
+from integration_formula.precise import Precise
 
 if __name__ == '__main__':
     print_lab(5.2, "Вычисление интегралов при помощи КФ Мелера")
     print(f"Вариант 8. \nf(x)=exp(x) * sin(x^2)\n")
+
     def f(x):
         return math.exp(x) * math.sin(x ** 2)
-    integartion = Integration(-1, 1, f, lambda x: 1 / math.sqrt(1 - x ** 2))
-    precise_value = integartion.precise()
+
+    precise = Precise(-1, 1, f, lambda x: 1 / math.sqrt(1 - x ** 2))
+    precise_value = precise.integrate()
+
     degrees = input('Введите N1, N2, N3: ').split()
     approximate_values = []
     for degree in degrees:
