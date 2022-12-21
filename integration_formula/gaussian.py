@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols
 
-from common.functions import tabulate_results, show_error_info
+from common.functions import tabulate_results, show_error_info, divide_epochs
 from integration_formula.approximate import Approximate
 from integration_formula.precise import Precise
 from lab1.main import find_roots
@@ -80,18 +80,21 @@ class GaussianFormula:
 
         show_error_info(precise_value, approximate_value)
 
-
     def integrate(self):
+        divide_epochs()
         print(f'\n1. Построение ортогонального многочлена')
         polynom = self.build_polynom()
 
+        divide_epochs()
         print(f'\n2. Нахождение корней ортогонального многочлена -- узлов КФ')
         nodes = find_roots(polynom, self.a, self.b, 100, self.eps)
         tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
+        divide_epochs()
         print(f'\n3. Проверка точности на полиноме степени {self.highest_degree()}')
         self.check_for_polynom(nodes)
 
+        divide_epochs()
         print(f'\n4. Нахождение коэффициентов A_k и построение КФ')
         approximate = Approximate(self.a, self.b, self.f, self.p)
         return approximate.integrate(nodes)
