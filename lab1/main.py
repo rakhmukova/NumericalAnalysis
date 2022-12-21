@@ -60,6 +60,8 @@ class Solver:
             x2 += h
             y1 = y2
 
+        return zip(range(1, len(self.intervals) + 1), self.intervals)
+
     def specify_bisection(self, ai, bi):
         step = 0
         while (bi - ai) > 2 * self.epsilon:
@@ -129,8 +131,8 @@ class Solver:
 
     def execute(self):
         print(f"\nОтделение корней:\n")
-        self.separate_roots()
-        tabulate_results(zip(range(1, len(self.intervals) + 1), self.intervals),
+        results = self.separate_roots()
+        tabulate_results(results,
                          ["Номер", "Интервал"])
 
         print("\nБисекция:\n")
