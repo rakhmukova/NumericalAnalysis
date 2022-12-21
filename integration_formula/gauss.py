@@ -45,7 +45,7 @@ class GaussFormula(GaussBase):
             precise_value = precise.integrate()
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, polynom)
             show_error_info(precise_value, approximate_value, show_rel_error=False)
-            check_precision(precise_value, approximate_value)
+            check_precision(precise_value, approximate_value, eps)
 
     def integrate(self):
         polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()
