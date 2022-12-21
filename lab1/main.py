@@ -173,9 +173,6 @@ def find_roots(equation, a, b, N, epsilon, method_name='bisection'):
 
 
 if __name__ == '__main__':
-    # a = -15
-    # b = 5
-    # N = 1000
     epsilon = math.pow(10, -5)
     def func(x): return 4 * math.cos(x) + 0.3 * x
 
@@ -183,8 +180,8 @@ if __name__ == '__main__':
     print(f"Вариант 8. f(x)= 4cos(x) + 0,3x epsilon = {epsilon}")
 
     def execute():
-        a, b = input_borders()
-        N = int(input('Введите N: '))
+        a, b = input_borders(-15, 5)
+        N = int(input('Введите N (1000): ') or '1000')
         solver = Solver(func, a, b, N, epsilon)
         solver.execute()
 
