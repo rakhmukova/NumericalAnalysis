@@ -15,6 +15,33 @@ class Solver:
         self.epsilon = epsilon
         self.intervals = []
 
+        self.methods_info = {
+            self.separate_roots: {
+                'name': 'Отделение корней',
+                'results': ["Номер", "Интервал"]
+            },
+            self.specify_bisection: {
+                'name': 'Бисекция',
+                'results': ["Корень", "Количество шагов", "Длина последнего отрезка",
+                            "Абсолоютная величина невязки"]
+            },
+            self.specify_newton: {
+                'name': 'Метод Ньютона',
+                'results': ["Корень", "Количество шагов",
+                            "Абсолоютная величина невязки"]
+            },
+            self.specify_newton_modified: {
+                'name': 'Модифицированный метод Ньютона',
+                'results': ["Корень", "Количество шагов",
+                            "Абсолоютная величина невязки"]
+            },
+            self.specify_secant: {
+                'name': 'Метод секущих',
+                'results': ["Корень", "Количество шагов",
+                            "Абсолоютная величина невязки"]
+            }
+        }
+
     def third_criterion_met(self, x):
         if self.func(x) * sc.derivative(self.func, x, n=2) <= 0:
             return False
@@ -99,15 +126,6 @@ class Solver:
         if len(results) != len(self.intervals):
             print("Другие корни нельзя уточнить. Третье условие теоремы о сходимости не выполнено\n")
         return results
-
-    def bisection(self):
-        print("\nБисекция:\n")
-        bisection_results = self.apply_method(self.specify_bisection)
-        tabulate_results(bisection_results,
-                               ["Корень", "Количество шагов", "Длина последнего отрезка",
-                                "Абсолоютная величина невязки"])
-        roots = [bisection_results[i][1] for i in range(len(bisection_results))]
-        return roots
 
     def execute(self):
         print(f"\nОтделение корней:\n")
