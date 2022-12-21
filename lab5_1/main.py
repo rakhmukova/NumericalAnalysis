@@ -3,8 +3,9 @@ import math
 from numpy.linalg import linalg
 from sympy import symbols
 
-from common.functions import print_lab, tabulate_results, abs_error, input_borders, show_error_info
-from lab1.main import Solver, find_roots
+from common.functions import print_lab, tabulate_results, input_borders, show_error_info
+from integration_formula.precise import Precise
+from lab1.main import find_roots
 
 import scipy.integrate as integrate
 
@@ -95,8 +96,8 @@ if __name__ == '__main__':
     def p(x): return math.exp(x)
 
 
-    integration = Integration(a, b, f, p)
-    precise_value = integration.precise()
+    precise = Precise(a, b, f, p)
+    precise_value = precise.integrate()
 
     gaussian = GaussianFormula(a, b, f, p, N)
     approximate_value = gaussian.integrate()
