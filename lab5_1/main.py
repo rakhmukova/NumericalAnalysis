@@ -12,13 +12,8 @@ if __name__ == '__main__':
     a, b = input_borders(0, 1)
     N = 10  # int(input("Введите количество узлов (10): ") or '10')
 
-
-    def validation_polynom(x): return x ** (2 * N - 1)
-
-
     def f(x):
         return math.sin(x)
-
 
     def p(x): return math.exp(x)
 
