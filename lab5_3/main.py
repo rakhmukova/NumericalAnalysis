@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print(f"Вариант 8. \nf(x)=sin(x) \np(x)=exp(x)")
 
     def execute():
-        N = 10 # int(input('\nВведите N: '))
+        N = int(input('\nВведите N: '))
         degrees = [N]
         gauss = CompoundGaussFormula(f, degrees)
         gauss.integrate_compound()

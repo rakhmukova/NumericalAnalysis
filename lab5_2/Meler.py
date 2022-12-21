@@ -21,8 +21,8 @@ if __name__ == '__main__':
         value = meler.integrate()
         approximate_values.append(value)
 
-    print(f'\nТочное значение: {precise_value}')
-    print('\nПриближенные значения интеграла: ')
+    print(f'\n\nТочное значение интеграла: {precise_value}')
+    print('Приближенные значения интеграла: ')
     absolute_errors = [abs_error(precise_value, approximate_value) for approximate_value in approximate_values]
     for i in range(len(degrees)):
         print(f'\nN = {degrees[i]}\nзначение: {approximate_values[i]}\nпогрешность: {absolute_errors[i]}')
