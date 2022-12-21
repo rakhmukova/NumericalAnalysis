@@ -2,8 +2,9 @@ import math
 
 from sympy import symbols
 
-from common.functions import tabulate_results
+from common.functions import tabulate_results, show_error_info
 from integration_formula.approximate import Approximate
+from integration_formula.precise import Precise
 from lab1.main import find_roots
 from numpy.linalg import linalg
 
@@ -64,13 +65,33 @@ class GaussianFormula:
         print(f'\nОртогональный многочлен: {polynom(x)}')
         return polynom
 
+    def highest_degree(self):
+        return self.N * 2 - 1
+
+    def check_for_polynom(self, nodes):
+        def polynom(x):
+            return x ** self.highest_degree()
+
+        precise = Precise(self.a, self.b, polynom, self.p)
+        precise_value = precise.integrate()
+
+        approximate = Approximate(self.a, self.b, polynom, self.p)
+        approximate_value = approximate.integrate(nodes)
+
+        show_error_info(precise_value, approximate_value)
+
+
     def integrate(self):
         print(f'\n1. Построение ортогонального многочлена')
         polynom = self.build_polynom()
+
         print(f'\n2. Нахождение корней ортогонального многочлена -- узлов КФ')
         nodes = find_roots(polynom, self.a, self.b, 100, self.eps)
         tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
-        print(f'\n3. Нахождение коэффициентов A_k и построение КФ')
+        print(f'\n3. Проверка точности на полиноме степени {self.highest_degree()}')
+        self.check_for_polynom(nodes)
+
+        print(f'\n4. Нахождение коэффициентов A_k и построение КФ')
         approximate = Approximate(self.a, self.b, self.f, self.p)
         return approximate.integrate(nodes)
