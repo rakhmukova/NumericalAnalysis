@@ -1,7 +1,8 @@
 from sympy import symbols, lambdify, exp
 
 from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
-from common.integrate import Integration
+from integration_formula.compound import Compound
+from integration_formula.precise import Precise
 
 
 def execute():
@@ -31,23 +32,24 @@ def execute():
 
     def p(x): return 1
 
-    integration = Integration(a, b, f, p, m, ders)
-    print(f'\nШаг h: {(b - a) / m}')
-    precise_value = integration.precise()
+    precise = Precise(a, b, f, p)
+    precise_value = precise.integrate()
     print(f"\nТочное значение интеграла: {precise_value}\n")
 
+    compound = Compound(a, b, f, p, m, ders)
+
     methods_and_names = [
-        (integration.left_rectangles, "левых прямоугольников"),
-        (integration.right_rectangles, "правых прямоугольников"),
-        (integration.middle_rectangles, "средних прямоугольников"),
-        (integration.trapezes, "трапеций"),
-        (integration.simpsons_multiple, "Симпсона"),
+        (compound.left_rectangles, "левых прямоугольников"),
+        (compound.right_rectangles, "правых прямоугольников"),
+        (compound.middle_rectangles, "средних прямоугольников"),
+        (compound.trapezes, "трапеций"),
+        (compound.simpsons_multiple, "Симпсона"),
     ]
 
     for methods_and_name in methods_and_names:
         method, name = methods_and_name
         approximate_value = method()
-        theoretical_error = integration.theoretical_error(method)
+        theoretical_error = compound.theoretical_error(method)
         print(f"Составная КФ {name} : {approximate_value}")
         absolute_error = abs_error(precise_value, float(approximate_value))
         print(f"Абсолютная погрешность: {absolute_error}")

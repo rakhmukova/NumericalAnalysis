@@ -1,7 +1,8 @@
 import math
 
 from common.functions import print_lab, input_borders, show_error_info
-from common.integrate import Integration
+from integration_formula.approximate import Approximate
+from integration_formula.precise import Precise
 
 if __name__ == '__main__':
     a, b = input_borders(0, 1)
@@ -19,8 +20,10 @@ if __name__ == '__main__':
     print_lab(4.1, "Точное и приближённое вычисление интеграла по квадратурным формулам")
     print(f"Вариант 8. \nf(x)=sin(x) \np(x) = 1/sqrt(1 - x) \na={a}  b={b}")
 
-    integration = Integration(a, b, f, p)
+    precise = Precise(a, b, f, p)
+    precise_value = precise.integrate()
 
-    precise_value = integration.precise()
-    approximate_value = integration.approximate(nodes)
+    approximate = Approximate(a, b, f, p)
+    approximate_value = approximate.integrate(nodes)
+    
     show_error_info(precise_value, approximate_value)

@@ -3,7 +3,8 @@ import math
 from sympy import symbols, exp, lambdify
 
 from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
-from common.integrate import Integration
+from integration_formula.precise import Precise
+from integration_formula.simple import Simple
 
 
 def execute():
@@ -21,17 +22,19 @@ def execute():
 
     a, b = input_borders()
     def p(x): return 1
-    integration = Integration(a, b, f, p)
-    precise_value = integration.precise()
+    precise = Precise(a, b, f, p)
+    precise_value = precise.integrate()
     print(f"\nТочное значение интеграла: {precise_value}\n")
 
+    simple = Simple(a, b, f, p)
+
     methods_and_names = [
-        (integration.left_rectangle, "левого прямоугольника"),
-        (integration.right_rectangle, "правого прямоугольника"),
-        (integration.middle_rectangle, "среднего прямоугольника"),
-        (integration.trapeze, "трапеции"),
-        (integration.simpsons, "Симпсона (или парабол)"),
-        (integration.three_eights, "3/8"),
+        (simple.left_rectangle, "левого прямоугольника"),
+        (simple.right_rectangle, "правого прямоугольника"),
+        (simple.middle_rectangle, "среднего прямоугольника"),
+        (simple.trapeze, "трапеции"),
+        (simple.simpsons, "Симпсона (или парабол)"),
+        (simple.three_eights, "3/8"),
     ]
 
     for methods_and_name in methods_and_names:

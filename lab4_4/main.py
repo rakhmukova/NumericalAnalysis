@@ -1,7 +1,8 @@
 from sympy import symbols, lambdify, exp
 
 from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
-from common.integrate import Integration
+from integration_formula.compound import Compound
+from integration_formula.precise import Precise
 
 
 def calc(methods_and_names):
@@ -57,16 +58,17 @@ def execute():
 
     def p(x): return 1
 
-    integration = Integration(a, b, f, p, m, ders)
-    methods_and_names = generate_methods(integration)
+    compound = Compound(a, b, f, p, m, ders)
+    methods_and_names = generate_methods(compound)
     print(f'\nШаг h: {(b - a) / m}')
-    precise_value = integration.precise()
+    precise = Precise(a, b, f, p)
+    precise_value = precise.integrate()
     print(f"\nТочное значение интеграла: {precise_value}\n")
 
     jh = calc(methods_and_names)
 
-    integration = Integration(a, b, f, p, m * l, ders)
-    methods_and_names = generate_methods(integration)
+    compound = Compound(a, b, f, p, m * l, ders)
+    methods_and_names = generate_methods(compound)
     jhl = calc(methods_and_names)
 
     names = [methods_and_name[1] for methods_and_name in methods_and_names]
