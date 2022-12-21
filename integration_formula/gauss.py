@@ -54,4 +54,3 @@ class GaussFormula(GaussBase):
         polynomials_nodes, coefficients = self.find_common_nodes_and_coefficients()
         self.check_for_polynomials(polynomials_nodes, coefficients)
         execution_loop(self.integrate_custom, polynomials_nodes, coefficients)
-
