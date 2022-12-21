@@ -27,7 +27,7 @@ def execution_loop(execute, *args):
     to_quit = 1
     while to_quit != 0:
         execute(*args)
-        to_quit = int(input("\nВведите 0, чтобы закрыть программу, другую цифру для ввода новых параметров: "))
+        to_quit = int(input("\nВведите 0, чтобы выйти, другую цифру для ввода новых параметров: "))
 
 
 def input_borders(def_a=None, def_b=None):
