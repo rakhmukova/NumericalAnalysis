@@ -44,8 +44,8 @@ class GaussBase:
         func_polynomials = []
         x = symbols('x')
         for degree in range(self.N + 1):
-            print(f'\nN={degree}')
-            print(polynomials[degree])
+            # print(f'\nN={degree}')
+            # print(polynomials[degree])
             polynom = lambdify(x, polynomials[degree])
             func_polynomials.append(polynom)
             if degree == 0:
@@ -53,8 +53,11 @@ class GaussBase:
             polynom_nodes = find_roots(polynom, -1, 1, 100, self.eps)
             polynomials_nodes.append(polynom_nodes)
 
-        tabulate_results(polynomials_nodes, title="Узлы многочленов Лежандра")
-
         coefficients = self.calc_coefficients(func_polynomials, polynomials_nodes)
-        tabulate_results(coefficients, title="Коэффициенты КФ Гаусса")
+
+        for degree in range(self.N):
+            tabulate_results(zip(polynomials_nodes[degree], coefficients[degree]), headers=['t_k', 'A_k'],
+                             title=f"Узлы и коэффициенты для N={degree + 1}")
+            # tabulate_results(coefficients[degree], title="Коэффициенты КФ Гаусса")
+
         return polynomials_nodes, coefficients

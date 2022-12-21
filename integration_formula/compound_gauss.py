@@ -25,8 +25,9 @@ class CompoundGaussFormula(GaussBase):
         return value
 
     def integrate_custom_compound(self, polynomials_nodes, coefficients):
+        print()
         a, b = input_borders(0, 10)
-        m = 5  # int(input('Введите m: '))
+        m = int(input('Введите m: '))
         for degree in self.degrees:
             approximate_value = self.integrate_compound_for_borders(degree, polynomials_nodes, coefficients, a, b, m)
             precise = Precise(a, b, self.f, lambda x: 1)

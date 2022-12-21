@@ -24,13 +24,14 @@ class GaussFormula(GaussBase):
             custom_nodes[i] = half * custom_nodes[i] + middle
             sum_int += custom_coefficients[i] * f(custom_nodes[i])
         if [a, b] != [-1, 1]:
-            tabulate_results(zip(custom_nodes, custom_coefficients), headers=['узел', 'коэфф'],
-                             title=f'Узлы и коэффициенты КФ Гаусса для N={degree}')
+            tabulate_results(zip(custom_nodes, custom_coefficients), headers=['x_k', 'C_k'])
         return sum_int
 
     def integrate_custom(self, polynomials_nodes, coefficients):
+        print()
         a, b = input_borders()
         for degree in self.degrees:
+            print(f'\nN={degree}')
             approximate_value = self.integrate_for_custom_borders(degree, polynomials_nodes, coefficients, a=a, b=b)
             precise = Precise(a, b, self.f, lambda x: 1)
             precise_value = precise.integrate()
@@ -40,6 +41,7 @@ class GaussFormula(GaussBase):
         eps = math.pow(10, -12)
         print(f'\nПроверим точность для многочленов (eps = {eps}):')
         for degree in self.degrees:
+            print(f'\nN={degree}')
             def polynom(x): return 2 * x ** (2 * degree - 1)
             precise = Precise(-1, 1, polynom, lambda x: 1)
             precise_value = precise.integrate()
