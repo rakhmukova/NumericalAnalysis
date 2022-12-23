@@ -70,7 +70,7 @@ class GaussianFormula:
 
     def check_for_polynom(self, nodes):
         def polynom(x):
-            return x ** self.highest_degree()
+            return math.pow(x, self.highest_degree())
 
         precise = Precise(self.a, self.b, polynom, self.p)
         precise_value = precise.integrate()
@@ -83,19 +83,19 @@ class GaussianFormula:
 
     def integrate(self):
         divide_epochs()
-        print(f'\n1. Построение ортогонального многочлена')
+        print(f'\nПостроение ортогонального многочлена')
         polynom = self.build_polynom()
 
         divide_epochs()
-        print(f'\n2. Нахождение корней ортогонального многочлена -- узлов КФ')
-        nodes = find_roots(polynom, self.a, self.b, 100, self.eps)
+        print(f'\nНахождение корней ортогонального многочлена -- узлов КФ')
+        nodes = find_roots(polynom, self.a, self.b, 100, self.eps, print_info=False)
         tabulate_results(zip([f"x_{j}" for j in range(len(nodes))], nodes), title="Корни многочлена")
 
-        divide_epochs()
-        print(f'\n3. Проверка точности на полиноме степени {self.highest_degree()}')
-        self.check_for_polynom(nodes)
+        # divide_epochs()
+        # print(f'\nПроверка точности на полиноме степени {self.highest_degree()}')
+        # self.check_for_polynom(nodes)
 
         divide_epochs()
-        print(f'\n4. Нахождение коэффициентов A_k и построение КФ')
+        print(f'\nНахождение коэффициентов A_k и построение КФ')
         approximate = Approximate(self.a, self.b, self.f, self.p)
         return approximate.integrate(nodes)
