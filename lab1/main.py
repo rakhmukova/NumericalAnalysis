@@ -51,7 +51,7 @@ class Solver:
 
     def separate_roots(self):
         h = (self.b - self.a) / self.N
-        print(f'Шаг h={h}\n')
+        # print(f'Шаг h={h}\n')
         x1 = self.a
         x2 = self.a + h
         y1 = self.func(x1)
@@ -111,8 +111,6 @@ class Solver:
         xi0 = (ai + bi) / 2
         xi1 = ai
         xi2 = bi
-        # if not self.third_criterion_met(xi0):
-        #     return None
 
         step = 0
         while abs(xi1 - xi2) > self.epsilon:
