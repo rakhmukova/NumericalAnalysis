@@ -32,6 +32,10 @@ def execution_loop(execute, *args):
         to_quit = int(input("\nВведите 0, чтобы выйти, другую цифру для ввода новых параметров: "))
 
 
+def input_param(name, type, def_value=None):
+    return type(input(f"Введите {name} ({def_value}): ") or def_value)
+
+
 def input_borders(def_a=None, def_b=None):
     a = float(input(f"Введите левую границу отрезка ({def_a}): ") or def_a)
     b = float(input(f"Введите правую границу отрезка ({def_b}): ") or def_b)
