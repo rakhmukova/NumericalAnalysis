@@ -11,6 +11,9 @@ def tabulate_results(array, headers=None, title=None):
     if not array:
         return
 
+    if isinstance(array, zip):
+        array = [list(a) for a in array]
+
     if not isinstance(array, list):
         return
 
