@@ -4,7 +4,7 @@ import numpy as np
 import scipy.misc as sc
 import math
 
-from common.functions import print_lab, tabulate_results, execution_loop, input_borders
+from common.functions import print_lab, tabulate_results, execution_loop, input_borders, input_param
 
 
 class Solver:
@@ -23,7 +23,7 @@ class Solver:
                 'results': ["Номер", "Интервал"]
             },
             self.specify_bisection: {
-                'name': 'Бисекция',
+                'name': 'Метод бисекции',
                 'results': ["Корень", "Количество шагов", "Длина последнего отрезка",
                             "Абсолоютная величина невязки"]
             },
@@ -51,6 +51,7 @@ class Solver:
 
     def separate_roots(self):
         h = (self.b - self.a) / self.N
+        print(f'Шаг h={h}\n')
         x1 = self.a
         x2 = self.a + h
         y1 = self.func(x1)
@@ -110,8 +111,8 @@ class Solver:
         xi0 = (ai + bi) / 2
         xi1 = ai
         xi2 = bi
-        if not self.third_criterion_met(xi0):
-            return None
+        # if not self.third_criterion_met(xi0):
+        #     return None
 
         step = 0
         while abs(xi1 - xi2) > self.epsilon:
@@ -146,7 +147,6 @@ class Solver:
         return results
 
     def execute(self):
-
         methods = [
             self.separate_roots,
             self.specify_bisection,
@@ -176,15 +176,22 @@ def find_roots(equation, a, b, N, epsilon, method_name='bisection', print_info=T
 
 if __name__ == '__main__':
     epsilon = math.pow(10, -5)
+
+
     def func(x): return 4 * math.cos(x) + 0.3 * x
+
 
     print_lab(1, "ЧИСЛЕННЫЕ МЕТОДЫ РЕШЕНИЯ НЕЛИНЕЙНЫХ УРАВНЕНИЙ")
     print(f"Вариант 8. f(x)= 4cos(x) + 0,3x epsilon = {epsilon}")
 
+
     def execute():
         a, b = input_borders(-15, 5)
-        N = int(input('Введите N (1000): ') or '1000')
+        N = input_param('N', int, 1000)
+        pow = input_param('степень точности', int, -5)
+        epsilon = math.pow(10, pow)
         solver = Solver(func, a, b, N, epsilon)
         solver.execute()
+
 
     execution_loop(execute)
