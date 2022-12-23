@@ -37,8 +37,8 @@ def input_param(name, type, def_value=None):
 
 
 def input_borders(def_a=None, def_b=None):
-    a = float(input(f"Введите левую границу отрезка ({def_a}): ") or def_a)
-    b = float(input(f"Введите правую границу отрезка ({def_b}): ") or def_b)
+    a = input_param('левую границу отрезка', float, def_a)
+    b = input_param('правую границу отрезка', float, def_b)
     return a, b
 
 
