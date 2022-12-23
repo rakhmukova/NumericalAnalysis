@@ -3,7 +3,7 @@ import math
 from sympy import symbols, simplify, lambdify
 
 from common.functions import tabulate_results
-from lab1.main import find_roots
+from lab1.equation_solver import find_roots
 
 
 class GaussBase:

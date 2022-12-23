@@ -4,7 +4,7 @@ import numpy as np
 
 from common.functions import print_lab, tabulate_results as tab, abs_error, execution_loop, input_borders, \
     show_error_info
-from lab1.main import find_roots
+from lab1.equation_solver import find_roots
 from scipy.interpolate import lagrange
 
 

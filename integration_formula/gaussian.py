@@ -5,7 +5,7 @@ from sympy import symbols
 from common.functions import tabulate_results, show_error_info, divide_epochs, check_precision
 from integration_formula.approximate import Approximate
 from integration_formula.precise import Precise
-from lab1.main import find_roots
+from lab1.equation_solver import find_roots
 from numpy.linalg import linalg
 
 import scipy.integrate as integrate
