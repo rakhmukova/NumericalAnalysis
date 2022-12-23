@@ -29,7 +29,7 @@ class Approximate(Integration):
         tab(matrix, [f"x_{i}" for i in range(len(nodes))], "Матрица")
 
         coefficients = list(linalg.solve(matrix, moments))
-        tab(zip([f"A_{j}" for j in range(n)], coefficients), title="Коэффициенты (решение линейного уравнения)")
+        tab(zip([f"A_{j}" for j in range(n)], coefficients), title="Коэффициенты КФ (решение линейного уравнения)")
 
         value = 0
         for i in range(n):
