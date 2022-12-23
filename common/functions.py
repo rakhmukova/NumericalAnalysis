@@ -10,6 +10,13 @@ def print_lab(num, name):
 def tabulate_results(array, headers=None, title=None):
     if not array:
         return
+
+    if not isinstance(array, list):
+        return
+
+    if not isinstance(array[0], list):
+        array = zip(range(len(array)), array)
+
     if title:
         print(f'\n{title}:\n')
     if not headers:
