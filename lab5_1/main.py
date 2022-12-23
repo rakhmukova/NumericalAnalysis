@@ -25,6 +25,6 @@ def execute():
 
 if __name__ == '__main__':
     print_lab(5.1, "Приближённое вычисление интегралов при помощи КФ НАСТ")
-    print(f"Вариант 8. f(x)=sin(x) p(x)=exp(x)\n")
+    print(f"Вариант 8. \nf(x)=sin(x) \np(x)=exp(x)\n")
 
     execution_loop(execute)
