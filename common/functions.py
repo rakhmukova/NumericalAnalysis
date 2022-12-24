@@ -8,7 +8,7 @@ def print_lab(num, name):
 
 
 def tabulate_results(array, headers=None, title=None):
-    if not array:
+    if array is None:
         return
 
     if isinstance(array, zip):
