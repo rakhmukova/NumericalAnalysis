@@ -2,7 +2,7 @@ import math
 
 from sympy import symbols, exp, lambdify
 
-from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders
+from common.functions import print_lab, tabulate_results, abs_error, execution_loop, input_borders, input_param
 from integration_formula.precise import Precise
 from integration_formula.simple import Simple
 
@@ -16,7 +16,7 @@ def execute():
     poly_3_func = x ** 3
     functions = [exp_func, poly_0_func, poly_1_func, poly_2_func, poly_3_func]
     tabulate_results(functions, ['Номер', 'Функция'])
-    num_of_function = int(input('\nВведите номер функции (0): ') or '0')
+    num_of_function = input_param('номер функции', int, 0)
 
     f = lambdify(x, functions[num_of_function])
 
@@ -24,24 +24,24 @@ def execute():
     def p(x): return 1
     precise = Precise(a, b, f, p)
     precise_value = precise.integrate()
-    print(f"\nТочное значение интеграла: {precise_value}\n")
+    print(f'\nТочное значение интеграла: {precise_value}\n')
 
     simple = Simple(a, b, f, p)
 
     methods_and_names = [
-        (simple.left_rectangle, "левого прямоугольника"),
-        (simple.right_rectangle, "правого прямоугольника"),
-        (simple.middle_rectangle, "среднего прямоугольника"),
-        (simple.trapeze, "трапеции"),
-        (simple.simpsons, "Симпсона (или парабол)"),
-        (simple.three_eights, "3/8"),
+        (simple.left_rectangle, 'левого прямоугольника'),
+        (simple.right_rectangle, 'правого прямоугольника'),
+        (simple.middle_rectangle, 'среднего прямоугольника'),
+        (simple.trapeze, 'трапеции'),
+        (simple.simpsons, 'Симпсона (или парабол)'),
+        (simple.three_eights, '3/8'),
     ]
 
     for methods_and_name in methods_and_names:
         method, name = methods_and_name
         approximate_value = method()
-        print(f"КФ {name} : {approximate_value}")
-        print(f"Абсолютная погрешность: {abs_error(precise_value, float(approximate_value))}\n")
+        print(f'КФ {name} : {approximate_value}')
+        print(f'Абсолютная погрешность: {abs_error(precise_value, float(approximate_value))}\n')
 
 
 if __name__ == '__main__':
@@ -49,6 +49,6 @@ if __name__ == '__main__':
         return math.exp(x)
 
     print_lab(4.2, 'Приближённое вычисление интеграла по простым квадратурным формулам')
-    print(f"Вариант 8")
+    print(f'Вариант 8')
 
     execution_loop(execute)

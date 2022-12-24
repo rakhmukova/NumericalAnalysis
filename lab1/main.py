@@ -18,8 +18,8 @@ if __name__ == '__main__':
     def execute():
         a, b = input_borders(-15, 5)
         N = input_param('N', int, 1000)
-        pow = input_param('степень точности', int, -5)
-        epsilon = math.pow(10, pow)
+        epsilon_pow = input_param('степень точности', int, -5)
+        epsilon = math.pow(10, epsilon_pow)
         solver = EquationSolver(func, a, b, N, epsilon)
         solver.solve()
 

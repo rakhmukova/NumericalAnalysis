@@ -1,4 +1,4 @@
-from common.functions import execution_loop, input_borders, show_error_info
+from common.functions import execution_loop, input_borders, show_error_info, input_param
 from integration_formula.gauss_base import GaussBase
 from integration_formula.precise import Precise
 
@@ -27,7 +27,7 @@ class CompoundGaussFormula(GaussBase):
     def integrate_custom_compound(self, polynomials_nodes, coefficients):
         print()
         a, b = input_borders(0, 10)
-        m = int(input('Введите m: '))
+        m = input_param('m', int, 10)
         for degree in self.degrees:
             approximate_value = self.integrate_compound_for_borders(degree, polynomials_nodes, coefficients, a, b, m)
             precise = Precise(a, b, self.f, lambda x: 1)

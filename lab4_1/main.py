@@ -5,6 +5,9 @@ from integration_formula.approximate import Approximate
 from integration_formula.precise import Precise
 
 if __name__ == '__main__':
+    print_lab(4.1, 'Точное и приближённое вычисление интеграла по квадратурным формулам')
+    print(f'Вариант 8. \nf(x)=sin(x) \np(x) = 1/sqrt(1 - x)')
+
     a, b = input_borders(0, 1)
 
     def f(x):
@@ -16,9 +19,6 @@ if __name__ == '__main__':
     x2 = 1 / 2
     x3 = 5 / 6
     nodes = [x1, x2, x3]
-
-    print_lab(4.1, "Точное и приближённое вычисление интеграла по квадратурным формулам")
-    print(f"Вариант 8. \nf(x)=sin(x) \np(x) = 1/sqrt(1 - x) \na={a}  b={b}")
 
     precise = Precise(a, b, f, p)
     precise_value = precise.integrate()

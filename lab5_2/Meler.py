@@ -5,8 +5,8 @@ from integration_formula.meler import MelerFormula
 from integration_formula.precise import Precise
 
 if __name__ == '__main__':
-    print_lab(5.2, "Вычисление интегралов при помощи КФ Мелера")
-    print(f"Вариант 8. \nf(x)=exp(x) * sin(x^2)\n")
+    print_lab(5.2, 'Вычисление интегралов при помощи КФ Мелера')
+    print(f'Вариант 8. \nf(x)=exp(x) * sin(x^2)\n')
 
     def f(x):
         return math.exp(x) * math.sin(x ** 2)

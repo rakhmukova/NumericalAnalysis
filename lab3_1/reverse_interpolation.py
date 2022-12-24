@@ -1,6 +1,6 @@
 import numpy as np
 
-from common.functions import tabulate_results, abs_error, show_error_info, divide_epochs
+from common.functions import tabulate_results, abs_error, show_error_info, divide_epochs, input_param
 from lab1.equation_solver import find_roots
 from scipy.interpolate import lagrange
 
@@ -27,12 +27,11 @@ class ReverseInterpolation:
             x_j += h
 
     def input_polynom_degree(self):
-        print(f'\nВведите степень интерполяционного многочлена не более {self.m} (10): ')
-        n = int(input() or '10')
+        n = input_param(f'степень интерполяционного многочлена не более {self.m}', int, self.m)
 
         while n > self.m:
-            print(f'Значение степени многочлена не должно превышать {self.m}, введите другое значение: ')
-            n = int(input())
+            print(f'Значение степени многочлена не должно превышать {self.m}')
+            n = input_param('другое значение', int, self.m)
 
         self.n = n
 
@@ -89,8 +88,8 @@ class ReverseInterpolation:
                          title='Корни многочлена и значения')
 
     def input_params(self):
-        self.func_value = float(input('Введите F (0.28): ') or '0.28')
-        self.eps = 10 ** int(input('ε = 10^p. Введите p (-6): ') or '-6')
+        self.func_value = input_param('F', float, 0.28)
+        self.eps = 10 ** input_param('p ε = 10^p', int, -6)
         self.input_polynom_degree()
 
     def execute(self, can_use_first_method):
