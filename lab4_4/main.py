@@ -46,7 +46,7 @@ def execute():
         [poly_1_func, poly_0_func, zero_func, zero_func],
         [poly_2_func, poly_1_func, zero_func, zero_func],
     ]
-    tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция'])
+    tabulate_results(functions, ['Номер', 'Функция'])
     num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
     f = lambdify(x, functions[num_of_function])

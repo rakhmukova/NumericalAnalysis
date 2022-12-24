@@ -15,7 +15,7 @@ def execute():
     poly_2_func = x ** 2
     poly_3_func = x ** 3
     functions = [exp_func, poly_0_func, poly_1_func, poly_2_func, poly_3_func]
-    tabulate_results(zip(range(0, len(functions)), functions), ['Номер', 'Функция'])
+    tabulate_results(functions, ['Номер', 'Функция'])
     num_of_function = int(input('\nВведите номер функции (0): ') or '0')
 
     f = lambdify(x, functions[num_of_function])

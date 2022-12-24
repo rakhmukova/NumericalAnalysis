@@ -61,8 +61,8 @@ class ReverseInterpolation:
         lagrange_polynom = self.build_polynom()
         point_value = lagrange_polynom(self.func_value)
 
-        tabulate_results(zip(range(self.n), lagrange_polynom.coef[::-1]), ['k', 'coeff'], 
-            title='Коэффициенты интерполяционного многочлена')
+        tabulate_results(lagrange_polynom.coef[::-1], ['k', 'coeff'],
+                         title='Коэффициенты интерполяционного многочлена')
 
         print(f'\nЗначение многочлена (искомая точка): {point_value}')
         func_value = self.func(point_value)
@@ -75,15 +75,18 @@ class ReverseInterpolation:
         # tabulate_results(self.value_table, ['x_j', 'f(x_j)'], title='Возьмем ближайшие n + 1 точку к x)
 
         lagrange_polynom = self.build_polynom()
+
         def equation(x): return lagrange_polynom(x) - self.func_value
-        tabulate_results(zip(range(self.n), lagrange_polynom.coef[::-1]), ['k', 'coeff'],
-            title='Коэффициенты интерполяционного многочлена')
+
+        tabulate_results(lagrange_polynom.coef[::-1], ['k', 'coeff'],
+                         title='Коэффициенты интерполяционного многочлена')
 
         roots = find_roots(equation, self.a, self.b, 100, self.eps)
         print(f'\nИсходное значение функции: {self.func_value}')
         func_values = [self.func(root) for root in roots]
         abs_diff = [abs_error(func_value, self.func_value) for func_value in func_values]
-        tabulate_results(zip(roots, func_values, abs_diff), ['x', 'f(x)', '|f(x) - F|'], title='Корни многочлена и значения')
+        tabulate_results(zip(roots, func_values, abs_diff), ['x', 'f(x)', '|f(x) - F|'],
+                         title='Корни многочлена и значения')
 
     def input_params(self):
         self.func_value = float(input('Введите F (0.28): ') or '0.28')

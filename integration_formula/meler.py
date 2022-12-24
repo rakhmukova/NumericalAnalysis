@@ -9,7 +9,7 @@ class MelerFormula:
         self.N = N
         self.nodes = []
         self.find_nodes()
-        tabulate_results(zip(range(len(self.nodes)), self.nodes), headers=['k', 'x_k'], title=f'Узлы КФ Мелера для N={N}')
+        tabulate_results(self.nodes, headers=['k', 'x_k'], title=f'Узлы КФ Мелера для N={N}')
         print(f'\nКоэффициент: {self.coefficient()}')
 
     def find_nodes(self):

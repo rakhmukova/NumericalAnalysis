@@ -38,7 +38,7 @@ class GaussBase:
 
     def find_common_nodes_and_coefficients(self):
         polynomials = self.build_polynomials()
-        tabulate_results(zip(range(len(polynomials)), polynomials), ['i', 'P_i'], "Многочлены Лежандра")
+        tabulate_results(polynomials, ['i', 'P_i'], "Многочлены Лежандра")
 
         polynomials_nodes = []
         func_polynomials = []

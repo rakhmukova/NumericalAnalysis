@@ -88,7 +88,7 @@ class Interpolation:
 
         self.diff_table = []
         self.fill_diff_table()
-        tabulate_results(zip(range(0, len(self.diff_table)), self.diff_table), ['k', 'f(x_0; ...; x_k)'],
+        tabulate_results(self.diff_table, ['k', 'f(x_0; ...; x_k)'],
                          'Разделенные разности')
 
         print('\nЗначение многочленов:')

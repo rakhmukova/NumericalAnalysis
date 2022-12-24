@@ -43,10 +43,10 @@ class GaussianFormula:
 
     def build_polynom(self):
         moments = self.find_moments()
-        tabulate_results(zip(range(len(moments)), moments), ['i', 'm_i'], "Моменты весовой функции")
+        tabulate_results(moments, ['i', 'm_i'], "Моменты весовой функции")
 
         polynom_coefficients = self.find_polynom_coefficients(moments)
-        tabulate_results(zip(range(1, len(polynom_coefficients) + 1), polynom_coefficients), ['i', 'A_i'],
+        tabulate_results(polynom_coefficients, ['i', 'A_i'],
                          "Коэффициенты ортогонального многочлена (решение системы)")
 
         polynom_coefficients.reverse()
