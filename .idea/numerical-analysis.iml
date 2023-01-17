@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/lab5_1/venv" />
       <excludeFolder url="file://$MODULE_DIR$/lab5_2/venv" />
       <excludeFolder url="file://$MODULE_DIR$/lab5_3/venv" />
+      <excludeFolder url="file://$MODULE_DIR$/src/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.9 (numerical-analysis)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
